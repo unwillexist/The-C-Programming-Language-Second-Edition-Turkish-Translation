@@ -1,0 +1,375 @@
+\documentclass[a4paper,12pt,oneside]{book}
+
+\usepackage[turkish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{gensymb}
+
+\begin{document}
+
+\author{Dennis M. Ritchie, Brian M. Kernighan}
+\title{C Programlama Dili İkinci Tiraj}
+\date{}
+
+\lstset{
+    escapeinside={(*}{*)},
+    frame=tb,
+    breaklines=true,
+    breakatwhitespace=true,
+    basicstyle={\footnotesize\ttfamily},
+    numbers=none,
+    columns=flexible,
+    tabsize=4,
+    inputencoding=utf8,
+    extendedchars=true,
+    % German umlauts
+    literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    %Türkçe karakterler
+    {ı}{{\i}}1
+    {İ}{{\.{I}}}1    % This is the problem character.
+    {ğ}{{\u{g}}}1
+    {Ğ}{{\u{G}}}1
+    {ş}{{\c{s}}}1
+    {Ş}{{\c{S}}}1
+    {ç}{{\c{c}}}1
+    {Ç}{{\c{C}}}1
+}
+
+
+
+\maketitle
+
+\chapter{Öğretici Kısıma Giriş}
+C'ye hızlı bir girişle başlayalım, Ana odağımız dilin gerekli elemanlarını detaylara, ayrıntılara, kurallara ve istisnalara girmeden gerçek programlar aracılığıyla göstermek. Bu aşamada tamamlayıcı ve kusursuz olmaya çalışmıyoruz. Sizi olabilecek en kısa sürede işe yarar programlar yazabilecek hale getirmeye çalışıyoruz. Ve bunu yapabilmek için temellere(değişkenler(\textbf{variables}), sabitler(\textbf{constants}), aritmetikler, kontrol akışı(\textbf{control flow}), fonksiyonlar(\textbf{functions}), girdi(\textbf{input}) ve çıktıların(\textbf{output}) esasları) odaklanmamız gerekmekte. Bilerek bu bölümde C'nin büyük programlar yazmak için önemli olan özelliklerine değinmiyoruz. Bu işaretleyiciler(\textbf{pointers}), yapılar(\textbf{structers}), C'nin zengin operatör setinin çoğunu, ve bazı kontrol akışı(\textbf{control-flow}) ifadelerini(\textbf{statement}) ve temel C standart kütüphanesini(\textbf{library}) içeriyor.
+\par Bu amacın kendine has sakıncaları bulunmakta. En öne çıkanı ise belirli bir dilin baştan sona hikayesinin burada bulunmaması. Aynı zamanda, öğretici kısım özetleyici olduğu gibi yanıltıcı da olabilir. Ve örnekler öğretim amacıyla C'nin tüm gücünden faydalanmadığından, örnekler olabilecek en öz ve zarif şekilde değiller. Bu etkileri hafifletebileceğimiz kadar hafiflettik, fakat dikkatli olmanız gerekmekte. Bir diğer sakınca ise bundan sonraki bölümlerin bu bölümün bir kısmının tekrarını içeriyor olması. Umuyoruz ki bu tekrarlama size rahatsızlıktan çok yardım sağlar.
+\par Herhangi bir durumda, deneyimli programcılar kendi programcılık ihtiyaçları doğrultusunda verilen materyalden faydalanacaklardır. Yeni başlayanlar ise bunu kendi küçük benzer programlarını yazarak sağlayabilirler. İki grup da bunu çatı(\textbf{framework}) olarak Bölüm 2'de başlayan daha detaylı açıklamaların üstüne kullanabilirler.
+
+\section{Başlamak}
+
+Yeni bir programlama dili öğrenmenin tek yolu o dille programlar yazmaktır. Yazılacak ilk program tüm diller için aynıdır.
+\\ \\ \hspace*{10mm} \textit{Kelimeleri Bastır}
+\\ \hspace*{20mm} \textbf{hello, world} \\
+
+\par Bu büyük bir engel; aşılması için programı metin olarak bir yerde oluşturmak, ardından başarılı bir şekilde derlemek, yüklemek, çalıştırmak, ve çıktının(\textbf{output}) nereye gittiğini bilmek gerekiyor. Bu mekaniksel detaylarda ustalaştıktan sonra, geri kalan herşey görece daha kolay.
+    \par C'de "hello, world" bastırma programı
+\begin{lstlisting}
+    #include <stdio.h>
+
+        main()
+        {
+            printf("hello, world\n");
+        }
+\end{lstlisting}
+
+Bu programı çalıştırmak kullandığınız sisteme göre değişiklik gösterir. Spesifik bir örnek vermek gerekirse, UNIX işletim sisteminde programı hello.c gibi ".c" uzantılı bir dosyanın içine kaydedip, ardından bu komut ile derlemeniz gerekir. \\
+
+\textbf{cc hello.c} \\
+
+Eğer bir karakter yazmayı unutmak veya bir şeyi yanlış yazmak gibi bir hata yapmadıysanız, derleme sorunsuz ve sessiz bir şekilde gerçekleşmeli, ve a.out isimli bir çalıştırılabilir(\textbf{executable}) dosya oluşmalı. Eğer bu komut ile a.out dosyasını çalıştırırsanız \newline
+
+\textbf{./a.out} \newline \newline
+bunu bastıracaktır \newline
+\par \textbf{hello, world} \newline
+
+
+Diğer sistemlerde, kurallar farklı olacaktır; sisteminizle ilgili yerel bir uzmana danışın.
+Şimdi programın kendisi hakkında biraz açıklama. Bir C programı, boyutu ne olursa olsun, fonksiyonlardan(\textbf{functions}) ve değişkenlerden(\textbf{variables}) oluşur. Bir fonksiyon(\textbf{function}), yapılacak bilgisayarsal operasyonları belirten ifadeler(\textbf{statements}) ve çalışma sırasında kullanılacak değerleri(\textbf{values}) taşıyan değişkenler(\textbf{variables}) içerir. C fonksiyonları(\textbf{functions}) daha çok altprogramlara(\textbf{subroutines}) yada Fortran dilini bilenlerin aşina olduğu Fortran fonksiyonlarına(\textbf{function}), Pascal prosedürlerine(\textbf{procedures}) ve Pascal fonksiyonlarına(\textbf{functions}) oldukça benzer. Bizim örneğimiz \textbf{main} isimli fonksiyon(\textbf{function}). Normalde fonksiyonlara(\textbf{functions}) istediğiniz ismi vermekte özgürsünüz, fakat "\textbf{main}" için değil. Programınız \textbf{main} fonksiyonunu(\textbf{function}) baştan aşağıya doğru çalıştırarak işe başlar. Bu, her programın herhangi bir yerinde bir \textbf{main} fonksiyonu(\textbf{function}) olmasını gerektirir.
+\textbf{main} genellikle başka fonksiyonları(\textbf{functions}) gerçekleştireceği işe yardım için çağırır, bazen sizin yazdıklarınız, bazen de kütüphanelerde(\textbf{libraries}) sizin için sağlanan fonksiyonları. Programınızın ilk satırı, \\
+
+\textbf{\#include $<$stdio.h$>$} \\
+
+derleyiciye(\textbf{compiler}) standart girdi(\textbf{input}), çıktı(\textbf{output}) hakkında bilgilerin programa dahil edilmesini söyler. Bu satır hemen hemen her C kaynak(\textbf{source}) dosyasında bulunur. Standart kütüphane(\textbf{library}) Bölüm 7'de ve Ek B'de açıklanmıştır.
+Fonksiyonlar(\textbf{functions}) arasında veri aktarımı için gerekli method, çağırılan fonksiyonlara(\textbf{functions}) argümanlar(\textbf{arguments}) adı verilen değer veya değerler vermektir. Fonksiyon adından sonraki parantezlerin arasında argüman(\textbf{argument}) veya argümanlar(\textbf{arguments}) bulunur. \\
+
+\begin{lstlisting}
+    #include <stdio.h>              standart kütüphane(library) hakkında                                 bilgileri içer
+
+    main()                          main adında hiç argümanı(argument)
+                                    olmayan bir fonksiyon(function) tanımla
+
+    {
+                                    main'in ifadeleri(statements) süslü
+                                    parantezler arasındadır
+
+        printf("hello, world\n");   main bir kütüphane(library)
+                                     fonksiyonu(function) olan printf
+                                     fonksiyonunu(function) parantezlerin
+                                     arasında verilen argümanı ekrana
+                                     bastırması için çağırıyor; \n yeni bir
+    }                                satırı temsil eder.
+\end{lstlisting}
+\begin{center}İlk C programı.\end{center}
+\pagebreak
+
+Bu örnekte \textbf{main} fonksiyonu(\textbf{function}) hiç bir argüman(\textbf{argument}) beklemeyen bir fonksiyon(\textbf{function}) olarak tanımlandı, bu parantezler arasında hiçbir veri olmamasıyla gösterilir ().
+Fonksiyonun ifadeleri(\textbf{statements}) süslü parantezler içerisinde tanımlanır \textbf{\{\}}. \textbf{main} fonksiyonu sadece bir ifade(\textbf{statement}) içeriyor, \\
+
+\textbf{printf("hello, world\textbackslash n");} \\
+
+C derleyicisi(\textbf{compiler}) hata mesajı üretecektir.
+\textbf{printf} asla yeni bir satırı otomatik olarak sağlamayacaktır, yani bu sayede tek bir çıktıyı(\textbf{output}) aralıksız bir biçimde printf fonksiyonunu(\textbf{function}) birden fazla kere çağırarak bastırabiliriz ve bu ilk programımız kadar iyi çalışır.
+
+\begin{lstlisting}
+    #include <stdio.h>
+
+    main()
+    {
+        printf("hello, ");
+        printf("world");
+        printf("\n");
+    }
+\end{lstlisting}
+
+bu şekilde aynı çıktıyı(\textbf{output}) bastırabiliriz.
+\textbackslash n'nin sadece bir karakteri temsil ettiğini farkedin. \textbackslash n  gibi bir Kaçış dizesi(\textbf{escape sequence}) bize yazılması zor veya görünmez karakteri belirtmek için genel ve genişletilebilir bir mekanik sağlıyor. C'nin diğer sağladığı kaçış dizeleri: \textbackslash t tab karakteri için, \textbackslash b geri tuşu(\textbf{backspace}) için, \textbackslash " çift tırnak için, ve  \textbackslash \textbackslash \hspace*{1mm}ters eğik çizginin(\textbf{backslash}) kendisi için. Bunların listesinin tamamını Bölüm 2.3'de bulabilirsiniz. \\
+
+\textbf{Egzersiz 1-1.} "hello, world" programını sisteminizde çalıştırın. Programın belli başlı parçalarını çıkartın ve alacağınız uyarı mesajlarını ve çıktıları(\textbf{outputs}) görün. \\
+
+\textbf{Egzersiz 1-2.} printf'in argümanı(\textbf{argument}) olan karakter öbeği(\textbf{string}) burada listelenmemiş olan \textbackslash c karakterini içerdiğinde ne olacağını görün,
+
+\section{Değişkenler ve Aritmetik Açıklamalar}
+
+Sonraki program aşağıdaki Fahrenhayt dereceleri ve onların Selsiyus(Santigrat) eşitliklerini gösteren tabloyu bastırmak için \degree \textit{C} = (5/9)(\degree \textit{F}-32) formülünü kullanıyor.
+
+\begin{lstlisting}
+        0   -17
+        20  -6
+        40  4
+        60  15
+        80  26
+        100 37
+        120 48
+        140 60
+        160 71
+        180 82
+        200 93
+        220 104
+        240 115
+        260 126
+        280 137
+        300 148
+\end{lstlisting}
+\par Programın kendisi halen sadece \textbf{main} adında tek bir fonksiyon(\textbf{function}) içeriyor. "hello, world" bastıran programdan biraz uzun, ancak korkacak bir şey yok komplike değil. Bu program bize, yorumlar(\textbf{comments}), tanımlamalar(\textbf{declerations}), değişkenler(\textbf{variables}), aritmetik açıklamalar, döngüler(\textbf{loops}), ve formatlanmış çıktılar(\textbf{output}) gibi birkaç yeni fikiri bize gösteriyor.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+/* Fahrenhayt-Selsiyus tablosunu bastır
+
+    for fahr = 0, 20, ... 300 */
+
+main()
+{
+    int fahr, celsius;
+    int lower, upper, step;
+
+    lower = 0; /* ısı tablosunun en düşük değeri */
+    upper = 300; /* ısı tablosunun en yüksek değeri */
+    step = 20; /* adım değeri */
+
+    fahr = lower;
+
+    while (fahr <= upper) {
+        celsius = 5 * (fahr-32) / 9;
+        printf("%d\t%d\n", fahr, celsius);
+        fahr = fahr + step;
+    }
+}
+\end{lstlisting}
+Bu iki satır \begin{lstlisting}
+/* Fahrenhayt-Selsiyus tablosunu bastır
+
+    for fahr = 0, 20, ... 300 */
+\end{lstlisting}
+bu durumda programın nasıl çalıştığını programın kaynak(\textbf{source}) kodunu okuyanlara açıklayan \textit{yorum}(\textbf{comment}) satırlarıdır. \textbf{/*} ve \textbf{*/} Karakterleri arasında olan karakterler derleyici(\textbf{compiler}) tarafından görmezden gelinir; bu satırlar programı okurken anlamayı daha kolay hale getirmek için özgürce kullanılabilir. Yorum satırları boşluk, tab, veya yeni satır karakterinin koyulabileceği her yerlere koyulabilirler.
+\par C'de, bütün değişkenler(\textbf{variables}) kullanılmadan önce tanımlanmalı, genellikle fonksiyonun(\textbf{function}) başında bütün çalıştırılabilir ifadelerden(\textbf{executable statements}) önce tanımlanır. Bir tanımlama(\textbf{decleration}) değişkenlerin(\textbf{variables}) özelliklerini anons eder; bu anons değişkenlerin(\textbf{variables}) tanımlanacak türünü(\textbf{type}) ve değişkenlere(\textbf{variable}) verilecek adları içerir, örneğin
+\newline
+\begin{lstlisting}
+int fahr, celsius;
+int lower, upper, step;
+\end{lstlisting}
+Tür(\textbf{type}) \textbf{int} kendisinin ardından listelenen değişkenlerin(\textbf{variable}) birer tamsayı(\textbf{integer}) olduğunu belirtir. Kayar noktalı yani ondalıklı sayılar(\textbf{float}) ile karşılaştırırsak, \textbf{int} ve \textbf{float}'un da sahip olduğu aralık kullandığınız makineye dayalıdır; 16-bit \textbf{int'ler}, -32768 ve +32767 arasındadır ve 16-bit \textbf{int'ler} de 32-bit \textbf{int'ler} kadar yaygındır, çoğunlukla \textbf{float} sayı 32-bit niceliğindedir, bu en az 6 farklı basamağa ve $10^{-38}$ ve $10^{+38}$ arasında bir büyüklüğe tekabül eder.
+\par C \textbf{int} ve \textbf{float}'un yanında birkaç başka temel veri türü(\textbf{type}) daha sağlıyor:
+
+\begin{lstlisting}
+        char    karakter - tek byte
+        short   kısa tamsayı(integer)
+        long    uzun tamsayı(integer)
+        double  64-bit(double precision) ondalıklı(float)
+\end{lstlisting}
+Bu objelerin büyüklüğü de makineye-dayalı(\textbf{machine-dependent}). Bunların yanında kurs boyunca tanışacağımız dizeler(\textbf{arrays}), yapılar(\textbf{structers}) ve birlikler(\textbf{unions}) gibi basit türler(\textbf{types}), onları işaretlemek(\textbf{pointing}) için işaretleyiciler(\textbf{pointers}), ve onları döndürmek(\textbf{return}) için fonksiyonlar(\textbf{functions}) vardır. \pagebreak
+\par Isı birimi dönüşümü programında hesaplama atama ifadeleriyle(\textbf{assignment statements}) başlıyor
+\begin{lstlisting}
+        lower = 0;
+        upper = 300;
+        step = 20;
+        fahr = lower;
+\end{lstlisting}
+bu ifadeler(\textbf{statement}) ile değişkenler(\textbf{variables}) başlangıç değerlerine tanımlanıyor. Tekli(toplu değil, bireysel) tanımlanmak istenen değişkenler(\textbf{variables}) noktalı virgül ile bitiriliyor.
+\par Tablonun her satırı aynı şekilde hesaplanıyor, bu yüzden her çıktı(\textbf{output}) satırı için bunu tekrarlayabiliriz; işte \textbf{while} döngüsünün(\textbf{loop}) amacı budur.
+\begin{lstlisting}
+        while (fahr <= upper) {
+            ...
+        }
+\end{lstlisting}
+\textbf{while} döngüsü(\textbf{loop}) şöyle işliyor: parantezler arasındaki koşul test edilir, Eğer koşul doğru ise (\textbf{fahr} küçüktür veya eşittir \textbf{upper}'a), döngünün(\textbf{loop}) gövdesi(süslü parantezler arasındaki bölüm) çalıştırılır. Ardından koşul tekrardan test edilir, ve eğer doğru ise, gövde tekrardan çalıştırılır. Koşul testi sırasında yanlış sonuç ortaya çıkarsa (\textbf{fahr} büyüktür \textbf{upper}'dan) gövde çalıştırılmaz ve döngü(\textbf{loop}) sona erer. Ve programın çalışması döngüden(\textbf{loop}) sonrası için olan ifadelerle(\textbf{statement}) devam eder. Bu programda döngüden sonra bir ifade(\textbf{statement}) yoktu ve bu yüzden program sona erdi.
+\par \textbf{while}'ın gövdesi süslü parantezler arasında bir veya birden çok ifade(\textbf{statement}) içerebilir, veya süslü parantezler olmadan tek bir ifade(\textbf{statement}) içerebilir, örneğin
+\begin{lstlisting}
+        while (i < j)
+            i = 2 * i;
+\end{lstlisting}
+Her koşulda, her zaman ifadeleri(\textbf{statements}) bir tab(4 boşluk) ile girintileyeceğiz bu şekilde sizler göz gezdirirken hangi ifadelerin(\textbf{statement}) döngünün(\textbf{loop}) içinde olduğunu rahatlıkla görebileceksiniz. Girintileme programın mantıksal yapısını öne çıkartır. Buna karşın C derleyicisi(\textbf{compiler}) programın nasıl gözüktüğünü umursamaz, düzgün girintileme ve boşuklama sadece programların insanlar için daha okunabilir olması içindir, buna karşın insanların girintileme için bazı tutkulu düşünceleri var. Biz popüler tarzlar arasından birini seçtik. Size uygun olanı seçmekten çekinmeyin ve sürekli kullanın. \pagebreak
+\par İşin çoğu döngünün(\textbf{loop}) gövde kısmında gerçekleşiyor. Celcius ısı birimi hesaplanıyor ve \textbf{celcius} adında bir değişkene(\textbf{variable}) ifade(\textbf{statement}) tarafından atanıyor.
+\begin{lstlisting}
+        celsius = 5 * (fahr-32) / 9;
+\end{lstlisting}
+Sadece 5/9 ile çarpmak yerine 5 ile çarpıp ardından 9'a bölünmesinin sebebi C'de ve diğer bir çok dilde, tam sayıların(\textbf{integer}) bölümlerinin kesirli(ondalıklı) kısımlarının budanması. 5 ve 9 tamsayı(\textbf{integer}) olduğundan, 5/9'un sonucunun kesirli kısmı budanardı ve geriye sadece 0 kalırdı ve tüm Selsiyus ısıları 0 olarak raporlanırdı.
+
+\par Bu örnek \textbf{printf}'in nasıl çalıştığını biraz daha gösteriyor. \textbf{printf} Bölüm 7'de detaylı açıklayacağımız genel-amaçlı çıktı(\textbf{output}) formatlama fonksiyonudur(\textbf{function}). İlk argümanı(\textbf{argument}) bastırılacak karakter jbeğidir(\textbf{string}), her \% karakteri fonksiyona(\textbf{function}) girilen bir diğer argüman(\textbf{argument}) tarafından yeri doldurulur (ikinci, üçüncü, ...) argümanlar(\textbf{arguments}) \% karakterlerinin yerine geçerler. Örneğin, \textbf{\%d} bir tamsayı(\textbf{integer}) argümanı(\textbf{argument}) belirtir. Böylelikle ifade
+\begin{lstlisting}
+        printf("%d\t%d\n", fahr, celsius);
+\end{lstlisting}
+iki tam sayının(\textbf{integer}) değerlerin(\textbf{values}) yani \textbf{fahr} ve \textbf{celcius}'un aralarında tab(\textbackslash t) karakteri ile bastırılmasını sağlar.
+\par Her \% karakteri \textbf{printf}'in ilk argümanından(\textbf{argument}) sonraki uyan ilk argümanıyla(\textbf{argument}) eşleşir. Argümanlar(\textbf{arguments}) ve \% karakterleri birbiriyle tür(\textbf{type}) olarak ve sıralama olarak eşleşmeli, yoksa yanlış çıktı alırsınız.
+\par Bu arada \textbf{printf} C dilinin bir parçası değil: C'nin kendisinde girdi(\textbf{input}) ve çıktı(\textbf{output}) tanımlı değil. \textbf{printf} sadece standart girdi(\textbf{input}) çıktı(\textbf{output}) kütüphanesinde(\textbf{library}) bulunan yararlı bir fonksiyon(\textbf{function}). \textbf{printf}'in davranışı ANSI standartında belirlenmiştir, böylelikle özellikleri her derleyiciyle(\textbf{compiler}) ve kütüphaneyle(\textbf{library}) standarda uyar.
+\par C'nin kendisine odaklanmak için, girdi(\textbf{input}) ve çıktı(\textbf{output}) hakkında Bölüm 7'den önce çok konuşmayacağız. Özellikle, o zamana dek formatlanmış girdiye(\textbf{input}) değinmeyeceğiz. Eğer numaraları girdilemeniz(\textbf{input}) gerekiyorsa, \textbf{scanf} fonksiyonu(\textbf{function}) üzerine olan Bölüm 7.4'ü okuyunuz. \textbf{scanf} \textbf{printf} gibi, sadece çıktı yazmak yerine girdi okuyor. \pagebreak
+\par Isı birimi dönüştürme programında birtakım problemler var. Bu problemlerden daha basit olanı çıktının(\textbf{output}) pek güzel olmaması çünkü sayılar tam yerinde değil. Bu düzeltmesi kolay; her \% karakterini \textbf{printf} ifadesinde(\textbf{statement}) bir genişlik ile yazarsak, sayılar alanlarında olması gereken yerlerinde olacaktır.
+Örneğin
+\begin{lstlisting}
+        printf("%3d %6d\n", fahr, celsius);
+\end{lstlisting}
+ilk sayıyı 3 basamak genişliğinde, ikinci sayıyı da 6 basamak genişliğinde üstteki gibi bastırırsak:
+\begin{lstlisting}
+          0        -17
+         20         -6
+         40          4
+         60         15
+         80         26
+        100         37
+        120         48
+        140         60
+        160         71
+        180         82
+        200         93
+        220        104
+        240        115
+        260        126
+        280        137
+        300        148
+\end{lstlisting}
+\par Daha ciddi olan problem ise tam sayı(\textbf{integer}) aritmetiği kullandığımızdan dolayı Selsiyus ısıları tam olarak doğru değil; örneğin, 0\degree F aslında -17.8\degree C, -17 değil. Daha doğru çıktıları(\textbf{output}) almamız için tamsayı(\textbf{integer}) yerine ondalıklı(\textbf{float}) aritmetik kullanmalıyız. Bu programda bazı değişiklikleri gerektiriyor. İşte programın ikinci versiyonu: \pagebreak
+
+\begin{lstlisting}
+        #include <stdio.h>
+
+        /* Fahrenhayt-Selsiyus tablosunu bastır
+
+            for fahr = 0, 20, ... 300 */
+
+        main()
+        {
+            float fahr, celsius;
+            int lower, upper, step;
+
+            lower = 0; /* ısı tablosunun en düşük değeri */
+            upper = 300; /* ısı tablosunun en yüksek değeri */
+            step = 20; /* adım değeri */
+
+            fahr = lower;
+
+            while (fahr <= upper) {
+                celsius = (5.0/9.0) * (fahr-32.0)
+                printf("%3.0f\t%6.1f\n", fahr, celsius);
+                fahr = fahr + step;
+            }
+        }
+\end{lstlisting}
+\par Bu öncekine çok benziyor, tek farkı \textbf{fahr}'ın ve \textbf{celsius}'un ondalıklı sayı(\textbf{float}) olarak tanımlanmış olması, ve dönüşüm için kullanılan formülün daha doğal şekliyle yazılmış olmalı. 5/9'u önceki versiyonda kullanamıyorduk çünkü iki tam sayının(\textbf{integer}) bölümü ondalıklı kısmını budayarak sonucun 0 çıkmasını sağlıyordu. Bir sabitteki(\textbf{constant}) ondalık noktası o sabitin türünün(\textbf{type}) ondalıklı sayı(\textbf{float}) olduğunu belirtir, yani 5.0/9.0 budanmadı çünkü işlem iki ondalıklı sayı(\textbf{float}) ile yapıldı.
+\par Eğer aritmetik operatörün tam sayı(\textbf{integer}) işlenenleri(\textbf{operand}) olursa tam sayılarla(\textbf{integers}) gerçekleşen bir işlem yapılırdı. Eğer aritmetik operatörün bir ondalıklı sayı(\textbf{float}) bir tam sayı(\textbf{integer}) işleneni(\textbf{operand}) bir şey farketmez ve tam sayı(\textbf{integer}) işlemden önce ondalıklı sayıya(\textbf{float}) dönüştürülür ve ardından hesaplama yapılırdı. Eğer \textbf{fahr-32} yazmış olsaydık, \textbf{32} otomatikman ondalıklı sayıya(\textbf{float}) dönüştürülürdü. Yine de ondalıklı sayı(\textbf{float}) olan sabitleri tam(\textbf{integral}) olmalarına rağmen ondalık noktasını kullanarak yazmamız, onların ondalıklı sayı(\textbf{float}) doğasını insan okuyucular için vurgular. Tam sayıların(\textbf{integer}) ondalıklı sayılara(\textbf{float}) dönüşümlerinin detaylarını Bölüm 2'de göreceğiz.
+
+
+\pagebreak Şuanlık şu atamayı farkedin
+\begin{lstlisting}
+        fahr = lower;
+\end{lstlisting} ve test edin.
+\begin{lstlisting}
+        while (fahr <= upper)
+\end{lstlisting} ikisi de çalışıyor, \textbf{int} operasyondan önce \textbf{float}'a dönüştürülüyor ve ardından hesaplama yapılıyor.
+
+\par \textbf{printf} dönüşümü belirteçi \textbf{\%3.0f} ondalıklı sayının(\textbf{floating-point number}) (\textbf{burada fahr}) en az 3 karakter genişliğinde, ve ondalık noktası ve kesir basamağı olmadan bastırılmasını belirtiyor. \textbf{\%6.1f} diğer bir sayı olan \textbf{celcius}'un  en az 6 karakter genişliğinde, ve ondalık noktasından sonra sadece bir kesir basamağı olacak şekilde bastırılmasını belirtiyor.
+Çıktı(\textbf{output}) şöyle gözüküyor:
+\begin{lstlisting}
+          0      -17.8
+         20       -6.7
+         40        4.4
+         60       15.6
+         80       26.7
+        100       37.8
+        120       48.9
+        140       60.0
+        160       71.1
+        180       82.2
+        200       93.3
+        220      104.4
+        240      115.6
+        260      126.7
+        280      137.8
+        300      148.9
+\end{lstlisting}
+
+Genişlik ve nicelik bir belirteçle görmezden gelinebilir: \textbf{\%6f} sayının en az 6 karakter genişliğinde olmasını belirtiyor; \textbf{\%.2f} ondalık noktasından sonraki iki karakteri temsil ediyor, fakat genişlik zoraki değil; ve \textbf{\%f} sayıyı ondalıklı sayı(\textbf{float}) olarak bastırmasını belirtiyor. \pagebreak
+
+\begin{lstlisting}
+        %d          tamsayı(integer) olarak bastır
+
+        %6d         tamsayı(integer) olarak bastır, 6 karakter genişliğinde
+
+        %f          ondalıklı sayı(float) olarak bastır
+
+        %6f         ondalıklı sayı(float) olarak bastır, 6 karakter
+                    genişliğinde
+
+        %.2f        ondalıklı sayı(float) olarak bastır, ondalık
+                    noktasından sonra sadece iki karakter
+
+        %6.2f       ondalıklı sayı(float) olarak bastır, en az 6 karakter
+                    genişliğinde ve ondalık noktasından sonra iki karakter
+\end{lstlisting} Diğerlerininin yanında, \textbf{printf} ayrıca \textbf{\%o} belirtecini sekizliler(\textbf{octal}), onaltılıklar(\textbf{hexademical}) için \textbf{\%x}, \textbf{\%c}'yi karakterler için, \textbf{\%s}'yi karakter öbekleri(\textbf{string}) için, ve \textbf{\%\%}'yi \%'ün kendisi için kullanıyor. \\
+
+\textbf{Egersiz 1-3.} Isı birimi dönüşüm programını tablonun başındaki yorum satırlarındaki başlığı bastıracak şekilde düzenleyin. \\
+
+
+\textbf{Egzersiz 1-4.} Tablodakileri bastıracak benzer bir programı yardım almadan kendiniz yazın.
+
+\section{For Döngüsü(\textbf{loop})}
+
+\par Bir programı belirli bir görevi gerçekleştirmesi için çok farklı şekillerde yazabiliriz. Haydi ısı dönüşüm programının bir varyasonunu oluşturalım.
+
+\begin{lstlisting}
+        #include <stdio.h>
+
+        /* Fahrenhayt-Selsiyus tablosu bastır */
+        main()
+        {
+            int fahr;
+
+            for (fahr = 0; fahr <= 300; fahr = fahr + 20)
+                printf("%3d %6.1f\n", fahr, (5.0/9.0)*(fahr-32));
+        }
+\end{lstlisting}
+
+Bu da aynı çıktıyı(\textbf{output}) üretecektir, fakat kesinlikle farklı gözüküyor.
+
+\pagebreak En büyük değişiklik birçok değişkenin(\textbf{variables}) saf dışı bırakılması; sadece \textbf{fahr} kaldı ve onu bir \textbf{int} yaptık. \textbf{lower} ve \textbf{upper} limitleri ve adım büyüklüğü sadece \textbf{for} ifadesi(\textbf{statement}) içinde sabit(\textbf{constant}) olarak karşımızda, artık yeni bir inşâ, ve Selsiyus sıcaklığını hesaplayan açıklama ayrı bir ifade(\textbf{statement}) yerine artık \textbf{printf}'nin üçüncü argümanı(\textbf{argument}) olarak karşımızda.
+
+\par
+\end{document}
