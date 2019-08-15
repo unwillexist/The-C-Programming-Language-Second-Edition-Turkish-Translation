@@ -371,5 +371,49 @@ Bu da aynı çıktıyı(\textbf{output}) üretecektir, fakat kesinlikle farklı 
 
 \pagebreak En büyük değişiklik birçok değişkenin(\textbf{variables}) saf dışı bırakılması; sadece \textbf{fahr} kaldı ve onu bir \textbf{int} yaptık. \textbf{lower} ve \textbf{upper} limitleri ve adım büyüklüğü sadece \textbf{for} ifadesi(\textbf{statement}) içinde sabit(\textbf{constant}) olarak karşımızda, artık yeni bir inşâ, ve Selsiyus sıcaklığını hesaplayan açıklama ayrı bir ifade(\textbf{statement}) yerine artık \textbf{printf}'nin üçüncü argümanı(\textbf{argument}) olarak karşımızda.
 
-\par
+\par Bu son değişiklik bize bir türün(\textbf{type}) değişkeni(\textbf{variable}) yerine doğrudan değer(\textbf{değer}) kullanmamıza izin verilmesi durumuna bir örnek, bu durumlarda o türün(\textbf{type}) daha komplike açıklamaları kullanılabilir. \textbf{printf}'in üçüncü argümanı \textbf{\%6.1f} ile eşleşecek olan bir ondalıklı sayı(\textbf{float}) olması gerektiğinden herhangi bir ondalıklı sayı(\textbf{float}) oraya konulabilir.
+\par \textbf{for} ifadesi(\textbf{statement}) bir döngü(\textbf{loop}), \textbf{while}'ın bir genellemesi. Eğer erken(\textbf{earlier}) \textbf{while} ile karşılaştırırsak, işleyişi açıkça görebiliriz. Parantezler içerisinde noktalı virgüller ile ayrılan üç ayrı bölüm mevcut. İlk bölüm, tanımlama
+\begin{lstlisting}
+		fahr = 0
+\end{lstlisting}
+döngü(\textbf{loop}) başlamadan önce sadece bir kere yapılır. İkinci bölüm ise test veya döngüyü(\textbf{loop}) kontrol edecek olan koşul bölümüdür:
+\begin{lstlisting}
+		fahr <= 300
+\end{lstlisting}
+Bu koşul değerlendirilir; eğer doğru ise, döngünün(\textbf{loop}) gövde(\textbf{body}) kısmı(burada sadece \textbf{printf}) çalıştırılır. Ardından arttırma bölümü
+\begin{lstlisting}
+		fahr = fahr + 20
+\end{lstlisting}
+çalıştırılır, ve koşul tekrardan test edilir. Döngü(\textbf{loop}) eğer koşul yanlış(\textbf{false}) olursa sonlanır. \textbf{while}'da olduğu gibi gövde(\textbf{body}) kısmı tek bir ifadeden(\textbf{statement}) veya süslü parantezler arasındaki ifade(\textbf{statements}) gruplarından oluşabilir. Tanımlama, koşul ve arttırma bölümleri herhangi bir açıklamadan(\textbf{expression}) oluşabilir.
+\par \textbf{while} ve \textbf{for} arasındaki seçim isteğe bağlı, hangisi gereken durum için daha temiz görünüyorsa onu kullanın. \textbf{while}'dan daha kompakt olduğundan ve döngü(\textbf{loop}) kontrol ifadelerini(\textbf{statements}) beraber tek bir yerde tuttuğundan, \textbf{for} genellikle tanımlama ve arttırmanın tek bir ifade olduğu ve mantıksal olarak ilişkili olduğu döngüler(\textbf{loop}) için daha uygundur. \newline
+\\ \textbf{Egzersiz 1-5.} Isı dönüşüm programını tabloyu tersine bastıracak şekilde düzenleyin, 300 dereceden 0'a doğru. \pagebreak
+
+\section{Sembolik Sabitler(constants)}
+
+\par Isı dönüşümünü sonsuza dek bir kenara bırakmadan önce son bir gözlem yapalım. Programa 300 ve 20 gibi "sihirli sayılar" gömmek kötü; bu sayılar bu programı daha sonra okuyacak bir kişinin kolayca görmek ve değiştirmek istediği değerler(\textbf{values}) taşıyorlar, bu sayıları bu şekilde gömmek onları sistematik yolla değiştirmeyi zorlaştırdığı gibi hangi sayının neye ait olduğunu da bilmemizi zorlaştırıyor. Bu sihirli sayılarla ilgilenmenin bir yolu onlara anlamlı isimler vermek. \textbf{\#define} satırı belirli bir karakter öbeğini bir sembolik isim veya sembolik sabit(\textbf{constant}) olarak tanımlar:
+\begin{lstlisting}
+		#define isim(name) karakter öbeği
+\end{lstlisting}
+Daha sonra, programda herhangi bir yerde bu isim(\textbf{name}) geçtiğinde, isim(\textbf{name}) ile eşleşen karakter öbeği(\textbf{string}) isimin yazıldığı yere geçer. isimin(\textbf{name}) formu değişkenlerin(\textbf{variables}) adlarının formuyla aynıdır: bir harf ile başlayan, sayı ve harflerden oluşan dizi. Eşleşen karakter öbeği her türlü karakterden oluşabilir; sadece sayılarla sınırlı değildir.
+\begin{lstlisting}
+		#include <stdio.h>
+
+		#define    LOWER    0          /* tablonun en düşük limiti */
+		#define    STEP     20		   /* adım büyüklüğü */
+		#define    UPPER    300        /* en yüksek limiti */
+
+		/* Fahrenhayt-Selsiyus tablosunu bastır */
+		int main () {
+			for(int fahr = LOWER; fahr <= UPPER; fahr += STEP) {
+				printf("%3d\t%6.1f\n", fahr, (5.0/9.0)*(fahr-32));
+			}
+
+		}
+\end{lstlisting}
+\textbf{LOWER}, \textbf{UPPER} ve \textbf{STEP} nicelikleri birer sembolik sabittir(\textbf{constant}), değişken(\textbf{variables}) değil, bu yüzden tanımlamalarla ortaya çıkmıyorlar. Sembolik sabitler(\textbf{constant}) genellikle büyük harflerle yazılır böylece kolayca küçük harfli değişken(\textbf{variable}) adlarından ayırt edilebilirler. \textbf{\#define} satırının sonunda noktalı virgül olmadığını farkedin. \pagebreak
+
+\section{Karakter Girişi(input) ve Çıkışı(output)}
+
+
+
 \end{document}
