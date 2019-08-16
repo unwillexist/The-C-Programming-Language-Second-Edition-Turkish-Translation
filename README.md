@@ -1,1 +1,2 @@
-# The-C-Programming-Language-Second-Edition-Turkish-Translation
+# The C Programming Language Second Edition
+# C Programlama Dili İkinci Tiraj
