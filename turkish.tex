@@ -49,9 +49,9 @@
 \maketitle
 
 \chapter{Öğretici Kısıma Giriş}
-C'ye hızlı bir girişle başlayalım, Ana odağımız dilin gerekli elemanlarını detaylara, ayrıntılara, kurallara ve istisnalara girmeden gerçek programlar aracılığıyla göstermek. Bu aşamada tamamlayıcı ve kusursuz olmaya çalışmıyoruz. Sizi olabilecek en kısa sürede işe yarar programlar yazabilecek hale getirmeye çalışıyoruz. Ve bunu yapabilmek için temellere(değişkenler(\textbf{variables}), sabitler(\textbf{constants}), aritmetikler, kontrol akışı(\textbf{control flow}), fonksiyonlar(\textbf{functions}), girdi(\textbf{input}) ve çıktıların(\textbf{output}) esasları) odaklanmamız gerekmekte. Bilerek bu bölümde C'nin büyük programlar yazmak için önemli olan özelliklerine değinmiyoruz. Bu işaretleyiciler(\textbf{pointers}), yapılar(\textbf{structers}), C'nin zengin operatör setinin çoğunu, ve bazı kontrol akışı(\textbf{control-flow}) ifadelerini(\textbf{statement}) ve temel C standart kütüphanesini(\textbf{library}) içeriyor.
-\par Bu amacın kendine has sakıncaları bulunmakta. En öne çıkanı ise belirli bir dilin baştan sona hikayesinin burada bulunmaması. Aynı zamanda, öğretici kısım özetleyici olduğu gibi yanıltıcı da olabilir. Ve örnekler öğretim amacıyla C'nin tüm gücünden faydalanmadığından, örnekler olabilecek en öz ve zarif şekilde değiller. Bu etkileri hafifletebileceğimiz kadar hafiflettik, fakat dikkatli olmanız gerekmekte. Bir diğer sakınca ise bundan sonraki bölümlerin bu bölümün bir kısmının tekrarını içeriyor olması. Umuyoruz ki bu tekrarlama size rahatsızlıktan çok yardım sağlar.
-\par Herhangi bir durumda, deneyimli programcılar kendi programcılık ihtiyaçları doğrultusunda verilen materyalden faydalanacaklardır. Yeni başlayanlar ise bunu kendi küçük benzer programlarını yazarak sağlayabilirler. İki grup da bunu çatı(\textbf{framework}) olarak Bölüm 2'de başlayan daha detaylı açıklamaların üstüne kullanabilirler.
+C'ye hızlı bir girişle başlayalım. Ana odağımız dilin gerekli elemanlarını detaylara, ayrıntılara, kurallara ve istisnalara girmeden gerçek programlar aracılığıyla göstermek. Bu aşamada tamamlayıcı ve kusursuz olmaya çalışmıyoruz. Sizi, olabilecek en kısa sürede işe yarar programlar yazabilecek hale getirmeye çalışıyoruz. Ve bunu yapabilmek için temellere (değişkenler (\textbf{variables}), sabitler (\textbf{constants}), aritmetikler, kontrol akışı (\textbf{control flow}), fonksiyonlar (\textbf{functions}), girdi (\textbf{input}) ve çıktıların (\textbf{output}) esasları) odaklanmamız gerekmekte. Bilerek bu bölümde C'nin büyük programlar yazmak için önemli olan özelliklerine değinmiyoruz. Bu işaretleyiciler (\textbf{pointers}), yapılar (\textbf{structers}), C'nin zengin operatör setinin çoğunu, bazı kontrol akışı (\textbf{control-flow}) ifadelerini (\textbf{statement}) ve temel C standart kütüphanesini (\textbf{library}) içeriyor.
+\par Bu amacın kendine has sakıncaları bulunmakta. En öne çıkanı ise belirli bir dilin baştan sona hikayesinin burada bulunmaması. Aynı zamanda, öğretici kısım özetleyici olduğu gibi yanıltıcı da olabilir. Ve örnekler öğretim amacıyla C'nin tüm gücünden faydalanmadığından, olabilecek en öz ve zarif şekilde değiller. Bu etkileri hafifletebileceğimiz kadar hafiflettik fakat dikkatli olmanız gerekmekte. Bir diğer sakınca ise bundan sonraki bölümlerin bu bölümün bir kısmının tekrarını içeriyor olması. Umuyoruz ki bu tekrarlama size rahatsızlıktan çok yardım sağlar.
+\par Herhangi bir durumda, deneyimli programcılar kendi programcılık ihtiyaçları doğrultusunda verilen materyalden faydalanacaklardır. Yeni başlayanlar ise bunu kendi küçük benzer programlarını yazarak sağlayabilirler. İki grup da bunu çatı (\textbf{framework}) olarak Bölüm 2'de başlayan daha detaylı açıklamaların üstüne kullanabilirler.
 
 \section{Başlamak}
 
@@ -59,7 +59,7 @@ Yeni bir programlama dili öğrenmenin tek yolu o dille programlar yazmaktır. Y
 \\ \\ \hspace*{10mm} \textit{Kelimeleri Bastır}
 \\ \hspace*{20mm} \textbf{hello, world} \\
 
-\par Bu büyük bir engel; aşılması için programı metin olarak bir yerde oluşturmak, ardından başarılı bir şekilde derlemek, yüklemek, çalıştırmak, ve çıktının(\textbf{output}) nereye gittiğini bilmek gerekiyor. Bu mekaniksel detaylarda ustalaştıktan sonra, geri kalan herşey görece daha kolay.
+\par Bu büyük bir engel; aşılması için programı metin olarak bir yerde oluşturmak, ardından başarılı bir şekilde derlemek, yüklemek, çalıştırmak, ve çıktının (\textbf{output}) nereye gittiğini bilmek gerekiyor. Bu mekaniksel detaylarda ustalaştıktan sonra, geri kalan her şey görece daha kolay.
     \par C'de "hello, world" bastırma programı
 \begin{lstlisting}
     #include <stdio.h>
@@ -74,21 +74,21 @@ Bu programı çalıştırmak kullandığınız sisteme göre değişiklik göste
 
 \textbf{cc hello.c} \\
 
-Eğer bir karakter yazmayı unutmak veya bir şeyi yanlış yazmak gibi bir hata yapmadıysanız, derleme sorunsuz ve sessiz bir şekilde gerçekleşmeli, ve a.out isimli bir çalıştırılabilir(\textbf{executable}) dosya oluşmalı. Eğer bu komut ile a.out dosyasını çalıştırırsanız \newline
+Eğer bir karakter yazmayı unutmak veya bir şeyi yanlış yazmak gibi bir hata yapmadıysanız, derleme sorunsuz ve sessiz bir şekilde gerçekleşmeli, ve a.out isimli bir çalıştırılabilir (\textbf{executable}) dosya oluşmalı. Eğer bu komut ile a.out dosyasını çalıştırırsanız \newline
 
 \textbf{./a.out} \newline \newline
-bunu bastıracaktır \newline
+bunu bastıracaktır. \newline
 \par \textbf{hello, world} \newline
 
 
-Diğer sistemlerde, kurallar farklı olacaktır; sisteminizle ilgili yerel bir uzmana danışın.
-Şimdi programın kendisi hakkında biraz açıklama. Bir C programı, boyutu ne olursa olsun, fonksiyonlardan(\textbf{functions}) ve değişkenlerden(\textbf{variables}) oluşur. Bir fonksiyon(\textbf{function}), yapılacak bilgisayarsal operasyonları belirten ifadeler(\textbf{statements}) ve çalışma sırasında kullanılacak değerleri(\textbf{values}) taşıyan değişkenler(\textbf{variables}) içerir. C fonksiyonları(\textbf{functions}) daha çok altprogramlara(\textbf{subroutines}) yada Fortran dilini bilenlerin aşina olduğu Fortran fonksiyonlarına(\textbf{function}), Pascal prosedürlerine(\textbf{procedures}) ve Pascal fonksiyonlarına(\textbf{functions}) oldukça benzer. Bizim örneğimiz \textbf{main} isimli fonksiyon(\textbf{function}). Normalde fonksiyonlara(\textbf{functions}) istediğiniz ismi vermekte özgürsünüz, fakat "\textbf{main}" için değil. Programınız \textbf{main} fonksiyonunu(\textbf{function}) baştan aşağıya doğru çalıştırarak işe başlar. Bu, her programın herhangi bir yerinde bir \textbf{main} fonksiyonu(\textbf{function}) olmasını gerektirir.
-\textbf{main} genellikle başka fonksiyonları(\textbf{functions}) gerçekleştireceği işe yardım için çağırır, bazen sizin yazdıklarınız, bazen de kütüphanelerde(\textbf{libraries}) sizin için sağlanan fonksiyonları. Programınızın ilk satırı, \\
+Diğer sistemlerde kurallar farklı olacaktır, sisteminizle ilgili yerel bir uzmana danışın.
+Şimdi programın kendisi hakkında biraz açıklama. Bir C programı, boyutu ne olursa olsun, fonksiyonlardan(\textbf{functions}) ve değişkenlerden(\textbf{variables}) oluşur. Bir fonksiyon (\textbf{function}), yapılacak bilgisayarsal operasyonları belirten ifadeler (\textbf{statements}) ve çalışma sırasında kullanılacak değerleri (\textbf{values}) taşıyan değişkenler (\textbf{variables}) içerir. C fonksiyonları (\textbf{functions}) daha çok altprogramlara (\textbf{subroutines}) ya da Fortran dilini bilenlerin aşina olduğu Fortran fonksiyonlarına (\textbf{function}), Pascal prosedürlerine (\textbf{procedures}) ve Pascal fonksiyonlarına (\textbf{functions}) oldukça benzer. Bizim örneğimiz \textbf{main} isimli fonksiyon (\textbf{function}). Normalde fonksiyonlara (\textbf{functions}) istediğiniz ismi vermekte özgürsünüz fakat "\textbf{main}" için değil. Programınız \textbf{main} fonksiyonunu (\textbf{function}) baştan aşağıya doğru çalıştırarak işe başlar. Bu, her programın herhangi bir yerinde bir \textbf{main} fonksiyonu (\textbf{function}) olmasını gerektirir.
+\textbf{main} genellikle başka fonksiyonları (\textbf{functions}) gerçekleştireceği işe yardım için çağırır, bazen sizin yazdıklarınız, bazen de kütüphanelerde (\textbf{libraries}) sizin için sağlanan fonksiyonları. Programınızın ilk satırı, \\
 
 \textbf{\#include $<$stdio.h$>$} \\
 
-derleyiciye(\textbf{compiler}) standart girdi(\textbf{input}), çıktı(\textbf{output}) hakkında bilgilerin programa dahil edilmesini söyler. Bu satır hemen hemen her C kaynak(\textbf{source}) dosyasında bulunur. Standart kütüphane(\textbf{library}) Bölüm 7'de ve Ek B'de açıklanmıştır.
-Fonksiyonlar(\textbf{functions}) arasında veri aktarımı için gerekli method, çağırılan fonksiyonlara(\textbf{functions}) argümanlar(\textbf{arguments}) adı verilen değer veya değerler vermektir. Fonksiyon adından sonraki parantezlerin arasında argüman(\textbf{argument}) veya argümanlar(\textbf{arguments}) bulunur. \\
+derleyiciye (\textbf{compiler}) standart girdi (\textbf{input}), çıktı (\textbf{output}) hakkında bilgilerin programa dahil edilmesini söyler. Bu satır hemen hemen her C kaynak (\textbf{source}) dosyasında bulunur. Standart kütüphane (\textbf{library}) Bölüm 7'de ve Ek B'de açıklanmıştır.
+Fonksiyonlar (\textbf{functions}) arasında veri aktarımı için gerekli metot, çağırılan fonksiyonlara (\textbf{functions}) argümanlar (\textbf{arguments}) adı verilen değer veya değerler vermektir. Fonksiyon adından sonraki parantezlerin arasında argüman (\textbf{argument}) veya argümanlar (\textbf{arguments}) bulunur. \\
 
 \begin{lstlisting}
     #include <stdio.h>              standart kütüphane(library) hakkında                                 bilgileri içer
@@ -110,13 +110,13 @@ Fonksiyonlar(\textbf{functions}) arasında veri aktarımı için gerekli method,
 \begin{center}İlk C programı.\end{center}
 \pagebreak
 
-Bu örnekte \textbf{main} fonksiyonu(\textbf{function}) hiç bir argüman(\textbf{argument}) beklemeyen bir fonksiyon(\textbf{function}) olarak tanımlandı, bu parantezler arasında hiçbir veri olmamasıyla gösterilir ().
-Fonksiyonun ifadeleri(\textbf{statements}) süslü parantezler içerisinde tanımlanır \textbf{\{\}}. \textbf{main} fonksiyonu sadece bir ifade(\textbf{statement}) içeriyor, \\
+Bu örnekte \textbf{main} fonksiyonu (\textbf{function}) hiçbir argüman (\textbf{argument}) beklemeyen bir fonksiyon (\textbf{function}) olarak tanımlandı, bu parantezler arasında hiçbir veri olmamasıyla gösterilir ().
+Fonksiyonun ifadeleri (\textbf{statements}) süslü parantezler içerisinde tanımlanır \textbf{\{\}}. \textbf{main} fonksiyonu sadece bir ifade (\textbf{statement}) içeriyor, \\
 
 \textbf{printf("hello, world\textbackslash n");} \\
 
-C derleyicisi(\textbf{compiler}) hata mesajı üretecektir.
-\textbf{printf} asla yeni bir satırı otomatik olarak sağlamayacaktır, yani bu sayede tek bir çıktıyı(\textbf{output}) aralıksız bir biçimde printf fonksiyonunu(\textbf{function}) birden fazla kere çağırarak bastırabiliriz ve bu ilk programımız kadar iyi çalışır.
+C derleyicisi (\textbf{compiler}) hata mesajı üretecektir.
+\textbf{printf} asla yeni bir satırı otomatik olarak sağlamayacaktır, yani bu sayede tek bir çıktıyı (\textbf{output}) aralıksız bir biçimde printf fonksiyonunu (\textbf{function}) birden fazla kere çağırarak bastırabiliriz ve bu ilk programımız kadar iyi çalışır.
 
 \begin{lstlisting}
     #include <stdio.h>
@@ -129,16 +129,16 @@ C derleyicisi(\textbf{compiler}) hata mesajı üretecektir.
     }
 \end{lstlisting}
 
-bu şekilde aynı çıktıyı(\textbf{output}) bastırabiliriz.
-\textbackslash n'nin sadece bir karakteri temsil ettiğini farkedin. \textbackslash n  gibi bir Kaçış dizesi(\textbf{escape sequence}) bize yazılması zor veya görünmez karakteri belirtmek için genel ve genişletilebilir bir mekanik sağlıyor. C'nin diğer sağladığı kaçış dizeleri: \textbackslash t tab karakteri için, \textbackslash b geri tuşu(\textbf{backspace}) için, \textbackslash " çift tırnak için, ve  \textbackslash \textbackslash \hspace*{1mm}ters eğik çizginin(\textbf{backslash}) kendisi için. Bunların listesinin tamamını Bölüm 2.3'de bulabilirsiniz. \\
+Bu şekilde aynı çıktıyı (\textbf{output}) bastırabiliriz.
+\textbackslash n'nin sadece bir karakteri temsil ettiğini farkedin. \textbackslash n  gibi bir kaçış dizesi (\textbf{escape sequence}) bize yazılması zor veya görünmez karakteri belirtmek için genel ve genişletilebilir bir mekanik sağlıyor. C'nin diğer sağladığı kaçış dizeleri: \textbackslash t tab karakteri için, \textbackslash b geri tuşu (\textbf{backspace}) için, \textbackslash " çift tırnak için, ve  \textbackslash \textbackslash \hspace*{1mm}ters eğik çizginin (\textbf{backslash}) kendisi için. Bunların listesinin tamamını Bölüm 2.3'te bulabilirsiniz. \\
 
-\textbf{Egzersiz 1-1.} "hello, world" programını sisteminizde çalıştırın. Programın belli başlı parçalarını çıkartın ve alacağınız uyarı mesajlarını ve çıktıları(\textbf{outputs}) görün. \\
+\textbf{Egzersiz 1-1.} "hello, world" programını sisteminizde çalıştırın. Programın belli başlı parçalarını çıkartın ve alacağınız uyarı mesajlarını ve çıktıları (\textbf{outputs}) görün. \\
 
-\textbf{Egzersiz 1-2.} printf'in argümanı(\textbf{argument}) olan karakter öbeği(\textbf{string}) burada listelenmemiş olan \textbackslash c karakterini içerdiğinde ne olacağını görün,
+\textbf{Egzersiz 1-2.} printf'in argümanı (\textbf{argument}) olan karakter öbeği (\textbf{string}) burada listelenmemiş olan \textbackslash c karakterini içerdiğinde ne olacağını görün.
 
 \section{Değişkenler ve Aritmetik Açıklamalar}
 
-Sonraki program aşağıdaki Fahrenhayt dereceleri ve onların Selsiyus(Santigrat) eşitliklerini gösteren tabloyu bastırmak için \degree \textit{C} = (5/9)(\degree \textit{F}-32) formülünü kullanıyor.
+Sonraki program aşağıdaki Fahrenhayt dereceleri ve onların Selsiyus (Santigrat) eşitliklerini gösteren tabloyu bastırmak için \degree \textit{C} = (5/9)(\degree \textit{F}-32) formülünü kullanıyor.
 
 \begin{lstlisting}
         0   -17
@@ -158,7 +158,7 @@ Sonraki program aşağıdaki Fahrenhayt dereceleri ve onların Selsiyus(Santigra
         280 137
         300 148
 \end{lstlisting}
-\par Programın kendisi halen sadece \textbf{main} adında tek bir fonksiyon(\textbf{function}) içeriyor. "hello, world" bastıran programdan biraz uzun, ancak korkacak bir şey yok komplike değil. Bu program bize, yorumlar(\textbf{comments}), tanımlamalar(\textbf{declerations}), değişkenler(\textbf{variables}), aritmetik açıklamalar, döngüler(\textbf{loops}), ve formatlanmış çıktılar(\textbf{output}) gibi birkaç yeni fikiri bize gösteriyor.
+\par Programın kendisi hâlen sadece \textbf{main} adında tek bir fonksiyon (\textbf{function}) içeriyor. "hello, world" bastıran programdan biraz uzun ancak korkacak bir şey yok, komplike değil. Bu program bize, yorumlar (\textbf{comments}), tanımlamalar (\textbf{declerations}), değişkenler (\textbf{variables}), aritmetik açıklamalar, döngüler (\textbf{loops}) ve formatlanmış çıktılar (\textbf{output}) gibi birkaç yeni fikri gösteriyor.
 
 \begin{lstlisting}
 #include <stdio.h>
@@ -190,15 +190,15 @@ Bu iki satır \begin{lstlisting}
 
     for fahr = 0, 20, ... 300 */
 \end{lstlisting}
-bu durumda programın nasıl çalıştığını programın kaynak(\textbf{source}) kodunu okuyanlara açıklayan \textit{yorum}(\textbf{comment}) satırlarıdır. \textbf{/*} ve \textbf{*/} Karakterleri arasında olan karakterler derleyici(\textbf{compiler}) tarafından görmezden gelinir; bu satırlar programı okurken anlamayı daha kolay hale getirmek için özgürce kullanılabilir. Yorum satırları boşluk, tab, veya yeni satır karakterinin koyulabileceği her yerlere koyulabilirler.
-\par C'de, bütün değişkenler(\textbf{variables}) kullanılmadan önce tanımlanmalı, genellikle fonksiyonun(\textbf{function}) başında bütün çalıştırılabilir ifadelerden(\textbf{executable statements}) önce tanımlanır. Bir tanımlama(\textbf{decleration}) değişkenlerin(\textbf{variables}) özelliklerini anons eder; bu anons değişkenlerin(\textbf{variables}) tanımlanacak türünü(\textbf{type}) ve değişkenlere(\textbf{variable}) verilecek adları içerir, örneğin
+bu durumda programın nasıl çalıştığını, programın kaynak (\textbf{source}) kodunu okuyanlara açıklayan \textit{yorum} (\textbf{comment}) satırlarıdır. \textbf{/*} ve \textbf{*/} karakterleri arasında olan karakterler derleyici (\textbf{compiler}) tarafından görmezden gelinir, bu satırlar programı okurken anlamayı daha kolay hale getirmek için özgürce kullanılabilir. Yorum satırları boşluk, tab veya yeni satır karakterinin koyulabileceği bütün yerlere koyulabilirler.
+\par C'de; bütün değişkenler (\textbf{variables}) kullanılmadan önce tanımlanmalı. Genellikle fonksiyonun (\textbf{function}) başında bütün çalıştırılabilir ifadelerden (\textbf{executable statements}) önce tanımlanır. Bir tanımlama (\textbf{decleration}) değişkenlerin (\textbf{variables}) özelliklerini anons eder; bu anons değişkenlerin (\textbf{variables}) tanımlanacak türünü (\textbf{type}) ve değişkenlere (\textbf{variable}) verilecek adları içerir, örneğin
 \newline
 \begin{lstlisting}
 int fahr, celsius;
 int lower, upper, step;
 \end{lstlisting}
-Tür(\textbf{type}) \textbf{int} kendisinin ardından listelenen değişkenlerin(\textbf{variable}) birer tamsayı(\textbf{integer}) olduğunu belirtir. Kayar noktalı yani ondalıklı sayılar(\textbf{float}) ile karşılaştırırsak, \textbf{int} ve \textbf{float}'un da sahip olduğu aralık kullandığınız makineye dayalıdır; 16-bit \textbf{int'ler}, -32768 ve +32767 arasındadır ve 16-bit \textbf{int'ler} de 32-bit \textbf{int'ler} kadar yaygındır, çoğunlukla \textbf{float} sayı 32-bit niceliğindedir, bu en az 6 farklı basamağa ve $10^{-38}$ ve $10^{+38}$ arasında bir büyüklüğe tekabül eder.
-\par C \textbf{int} ve \textbf{float}'un yanında birkaç başka temel veri türü(\textbf{type}) daha sağlıyor:
+tür(\textbf{type}) \textbf{int} kendisinin ardından listelenen değişkenlerin (\textbf{variable}) birer tamsayı (\textbf{integer}) olduğunu belirtir. Kayar noktalı yani ondalıklı sayılar (\textbf{float}) ile karşılaştırırsak, \textbf{int} ve \textbf{float}'un da sahip olduğu aralık, kullandığınız makineye dayalıdır; 16-bit \textbf{int'ler}, -32768 ve +32767 arasındadır ve 16-bit \textbf{int'ler} de 32-bit \textbf{int'ler} kadar yaygındır, çoğunlukla \textbf{float} sayı 32-bit niceliğindedir, bu en az 6 farklı basamağa ve $10^{-38}$ ve $10^{+38}$ arasında bir büyüklüğe tekabül eder.
+\par C \textbf{int} ve \textbf{float}'un yanında birkaç başka temel veri türü (\textbf{type}) daha sağlıyor:
 
 \begin{lstlisting}
         char    karakter - tek byte
@@ -206,29 +206,29 @@ Tür(\textbf{type}) \textbf{int} kendisinin ardından listelenen değişkenlerin
         long    uzun tamsayı(integer)
         double  64-bit(double precision) ondalıklı(float)
 \end{lstlisting}
-Bu objelerin büyüklüğü de makineye-dayalı(\textbf{machine-dependent}). Bunların yanında kurs boyunca tanışacağımız dizeler(\textbf{arrays}), yapılar(\textbf{structers}) ve birlikler(\textbf{unions}) gibi basit türler(\textbf{types}), onları işaretlemek(\textbf{pointing}) için işaretleyiciler(\textbf{pointers}), ve onları döndürmek(\textbf{return}) için fonksiyonlar(\textbf{functions}) vardır. \pagebreak
-\par Isı birimi dönüşümü programında hesaplama atama ifadeleriyle(\textbf{assignment statements}) başlıyor
+Bu objelerin büyüklüğü de makineye dayalı (\textbf{machine-dependent}). Bunların yanında kurs boyunca tanışacağımız dizeler (\textbf{arrays}), yapılar (\textbf{structers}) ve birlikler (\textbf{unions}) gibi basit türler (\textbf{types}); onları işaretlemek (\textbf{pointing}) için işaretleyiciler (\textbf{pointers}) ve onları döndürmek (\textbf{return}) için fonksiyonlar (\textbf{functions}) vardır. \pagebreak
+\par Isı birimi dönüşümü programında hesaplama atama ifadeleriyle (\textbf{assignment statements}) başlıyor.
 \begin{lstlisting}
         lower = 0;
         upper = 300;
         step = 20;
         fahr = lower;
 \end{lstlisting}
-bu ifadeler(\textbf{statement}) ile değişkenler(\textbf{variables}) başlangıç değerlerine tanımlanıyor. Tekli(toplu değil, bireysel) tanımlanmak istenen değişkenler(\textbf{variables}) noktalı virgül ile bitiriliyor.
-\par Tablonun her satırı aynı şekilde hesaplanıyor, bu yüzden her çıktı(\textbf{output}) satırı için bunu tekrarlayabiliriz; işte \textbf{while} döngüsünün(\textbf{loop}) amacı budur.
+Bu ifadeler (\textbf{statement}) ile değişkenler (\textbf{variables}) başlangıç değerlerine tanımlanıyor. Tekli (toplu değil, bireysel) tanımlanmak istenen değişkenler (\textbf{variables}) noktalı virgül ile bitiriliyor.
+\par Tablonun her satırı aynı şekilde hesaplanıyor, bu yüzden her çıktı (\textbf{output}) satırı için bunu tekrarlayabiliriz; işte \textbf{while} döngüsünün (\textbf{loop}) amacı budur.
 \begin{lstlisting}
         while (fahr <= upper) {
             ...
         }
 \end{lstlisting}
-\textbf{while} döngüsü(\textbf{loop}) şöyle işliyor: parantezler arasındaki koşul test edilir, Eğer koşul doğru ise (\textbf{fahr} küçüktür veya eşittir \textbf{upper}'a), döngünün(\textbf{loop}) gövdesi(süslü parantezler arasındaki bölüm) çalıştırılır. Ardından koşul tekrardan test edilir, ve eğer doğru ise, gövde tekrardan çalıştırılır. Koşul testi sırasında yanlış sonuç ortaya çıkarsa (\textbf{fahr} büyüktür \textbf{upper}'dan) gövde çalıştırılmaz ve döngü(\textbf{loop}) sona erer. Ve programın çalışması döngüden(\textbf{loop}) sonrası için olan ifadelerle(\textbf{statement}) devam eder. Bu programda döngüden sonra bir ifade(\textbf{statement}) yoktu ve bu yüzden program sona erdi.
-\par \textbf{while}'ın gövdesi süslü parantezler arasında bir veya birden çok ifade(\textbf{statement}) içerebilir, veya süslü parantezler olmadan tek bir ifade(\textbf{statement}) içerebilir, örneğin
+\textbf{while} döngüsü (\textbf{loop}) şöyle işliyor: Parantezler arasındaki koşul test edilir, eğer koşul doğru ise (\textbf{fahr} küçüktür veya eşittir \textbf{upper}'a), döngünün (\textbf{loop}) gövdesi (süslü parantezler arasındaki bölüm) çalıştırılır. Ardından koşul tekrardan test edilir ve eğer doğru ise, gövde tekrardan çalıştırılır. Koşul testi sırasında yanlış sonuç ortaya çıkarsa (\textbf{fahr} büyüktür \textbf{upper}'dan) gövde çalıştırılmaz ve döngü (\textbf{loop}) sona erer. Ve programın çalışması döngüden (\textbf{loop}) sonrası için olan ifadelerle(\textbf{statement}) devam eder. Bu programda döngüden sonra bir ifade (\textbf{statement}) yoktu ve bu yüzden program sona erdi.
+\par \textbf{while}'ın gövdesi süslü parantezler arasında bir veya birden çok ifade (\textbf{statement}) içerebilir veya süslü parantezler olmadan tek bir ifade (\textbf{statement}) içerebilir, örneğin;
 \begin{lstlisting}
         while (i < j)
             i = 2 * i;
 \end{lstlisting}
-Her koşulda, her zaman ifadeleri(\textbf{statements}) bir tab(4 boşluk) ile girintileyeceğiz bu şekilde sizler göz gezdirirken hangi ifadelerin(\textbf{statement}) döngünün(\textbf{loop}) içinde olduğunu rahatlıkla görebileceksiniz. Girintileme programın mantıksal yapısını öne çıkartır. Buna karşın C derleyicisi(\textbf{compiler}) programın nasıl gözüktüğünü umursamaz, düzgün girintileme ve boşuklama sadece programların insanlar için daha okunabilir olması içindir, buna karşın insanların girintileme için bazı tutkulu düşünceleri var. Biz popüler tarzlar arasından birini seçtik. Size uygun olanı seçmekten çekinmeyin ve sürekli kullanın. \pagebreak
-\par İşin çoğu döngünün(\textbf{loop}) gövde kısmında gerçekleşiyor. Celcius ısı birimi hesaplanıyor ve \textbf{celcius} adında bir değişkene(\textbf{variable}) ifade(\textbf{statement}) tarafından atanıyor.
+Her koşulda, her zaman ifadeleri (\textbf{statements}) bir tab (4 boşluk) ile girintileyeceğiz. Bu şekilde sizler göz gezdirirken hangi ifadelerin (\textbf{statement}) döngünün (\textbf{loop}) içinde olduğunu rahatlıkla görebileceksiniz. Girintileme programın mantıksal yapısını öne çıkartır. Buna karşın C derleyicisi (\textbf{compiler}) programın nasıl gözüktüğünü umursamaz, düzgün girintileme ve boşluklama sadece programların insanlar için daha okunabilir olması içindir. Buna karşın insanların girintileme için bazı tutkulu düşünceleri var. Biz popüler tarzlar arasından birini seçtik. Size uygun olanı seçmekten çekinmeyin ve sürekli kullanın. \pagebreak
+\par İşin çoğu döngünün (\textbf{loop}) gövde kısmında gerçekleşiyor. Celcius ısı birimi hesaplanıyor ve \textbf{celcius} adında bir değişkene (\textbf{variable}) ifade (\textbf{statement}) tarafından atanıyor.
 \begin{lstlisting}
         celsius = 5 * (fahr-32) / 9;
 \end{lstlisting}
@@ -430,7 +430,7 @@ tam sayı olan değişken(\textbf{variable}) c'yi karakter olarak bastırıyor, 
 
 \subsection{Dosya Kopyalama}
 
-Bilinen \textbf{getchar} ve (\textbf{putchar}) ile, girdi(\textbf{input}) ve çıktı(\textbf{output}) dışında başka bir şey bilmeden şaşırtı derece fazla yararlı kod yazabiliriz. En basit örnek girdiyi(\textbf{input}) çıktıya(\textbf{output}) bir kerede bir karakter olarak kopyalayan program:
+Bilinen \textbf{getchar} ve (\textbf{putchar}) ile, girdi(\textbf{input}) ve çıktı(\textbf{output}) dışında başka bir şey bilmeden şaşırtıcı derecede fazla yararlı kod yazabiliriz. En basit örnek girdiyi(\textbf{input}) çıktıya(\textbf{output}) bir kerede bir karakter olarak kopyalayan program:
 \begin{lstlisting}
 		karakteri oku
 		while (karakter dosya-sonu göstergesi değil)
