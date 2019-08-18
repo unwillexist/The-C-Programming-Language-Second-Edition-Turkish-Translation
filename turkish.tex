@@ -56,9 +56,10 @@ C'ye hızlı bir girişle başlayalım. Ana odağımız dilin gerekli elemanlar�
 \section{Başlamak}
 
 Yeni bir programlama dili öğrenmenin tek yolu o dille programlar yazmaktır. Yazılacak ilk program tüm diller için aynıdır.
-\\ \\ \hspace*{10mm} \textit{Kelimeleri Bastır}
-\\ \hspace*{20mm} \textbf{hello, world} \\
-
+\begin{lstlisting}
+		Kelimeleri Bastır
+			hello, world
+\end{lstlisting}
 \par Bu büyük bir engel; aşılması için programı metin olarak bir yerde oluşturmak, ardından başarılı bir şekilde derlemek, yüklemek, çalıştırmak, ve çıktının (\textbf{output}) nereye gittiğini bilmek gerekiyor. Bu mekaniksel detaylarda ustalaştıktan sonra, geri kalan her şey görece daha kolay.
     \par C'de "hello, world" bastırma programı
 \begin{lstlisting}
@@ -70,16 +71,18 @@ Yeni bir programlama dili öğrenmenin tek yolu o dille programlar yazmaktır. Y
         }
 \end{lstlisting}
 
-Bu programı çalıştırmak kullandığınız sisteme göre değişiklik gösterir. Spesifik bir örnek vermek gerekirse, UNIX işletim sisteminde programı hello.c gibi ".c" uzantılı bir dosyanın içine kaydedip, ardından bu komut ile derlemeniz gerekir. \\
-
-\textbf{cc hello.c} \\
-
-Eğer bir karakter yazmayı unutmak veya bir şeyi yanlış yazmak gibi bir hata yapmadıysanız, derleme sorunsuz ve sessiz bir şekilde gerçekleşmeli, ve a.out isimli bir çalıştırılabilir (\textbf{executable}) dosya oluşmalı. Eğer bu komut ile a.out dosyasını çalıştırırsanız \newline
-
-\textbf{./a.out} \newline \newline
-bunu bastıracaktır. \newline
-\par \textbf{hello, world} \newline
-
+Bu programı çalıştırmak kullandığınız sisteme göre değişiklik gösterir. Spesifik bir örnek vermek gerekirse, UNIX işletim sisteminde programı hello.c gibi ".c" uzantılı bir dosyanın içine kaydedip, ardından bu komut ile derlemeniz gerekir.
+\begin{lstlisting}
+		cc hello.c
+\end{lstlisting}
+Eğer bir karakter yazmayı unutmak veya bir şeyi yanlış yazmak gibi bir hata yapmadıysanız, derleme sorunsuz ve sessiz bir şekilde gerçekleşmeli, ve a.out isimli bir çalıştırılabilir (\textbf{executable}) dosya oluşmalı. Eğer bu komut ile a.out dosyasını çalıştırırsanız
+\begin{lstlisting}
+		a.out
+\end{lstlisting}
+bunu bastıracaktır
+\begin{lstlisting}
+		hello, world
+\end{lstlisting}
 
 Diğer sistemlerde kurallar farklı olacaktır, sisteminizle ilgili yerel bir uzmana danışın.
 Şimdi programın kendisi hakkında biraz açıklama. Bir C programı, boyutu ne olursa olsun, fonksiyonlardan(\textbf{functions}) ve değişkenlerden(\textbf{variables}) oluşur. Bir fonksiyon (\textbf{function}), yapılacak bilgisayarsal operasyonları belirten ifadeler (\textbf{statements}) ve çalışma sırasında kullanılacak değerleri (\textbf{values}) taşıyan değişkenler (\textbf{variables}) içerir. C fonksiyonları (\textbf{functions}) daha çok altprogramlara (\textbf{subroutines}) ya da Fortran dilini bilenlerin aşina olduğu Fortran fonksiyonlarına (\textbf{function}), Pascal prosedürlerine (\textbf{procedures}) ve Pascal fonksiyonlarına (\textbf{functions}) oldukça benzer. Bizim örneğimiz \textbf{main} isimli fonksiyon (\textbf{function}). Normalde fonksiyonlara (\textbf{functions}) istediğiniz ismi vermekte özgürsünüz fakat "\textbf{main}" için değil. Programınız \textbf{main} fonksiyonunu (\textbf{function}) baştan aşağıya doğru çalıştırarak işe başlar. Bu, her programın herhangi bir yerinde bir \textbf{main} fonksiyonu (\textbf{function}) olmasını gerektirir.
@@ -241,7 +244,7 @@ Sadece 5/9 ile çarpmak yerine 5 ile çarpılıp ardından 9'a bölünmesinin se
 iki tam sayının (\textbf{integer}) değerlerin (\textbf{values}) yani \textbf{fahr} ve \textbf{celcius}'un aralarında tab(\textbackslash t) karakteri ile bastırılmasını sağlar.
 \par Her \% karakteri \textbf{printf}'in ilk argümanından (\textbf{argument}) sonraki uyan ilk argümanıyla (\textbf{argument}) eşleşir. Argümanlar (\textbf{arguments}) ve \% karakterleri birbiriyle tür (\textbf{type}) olarak ve sıralama olarak eşleşmeli, yoksa yanlış çıktı alırsınız.
 \par Bu arada \textbf{printf} C dilinin bir parçası değil: C'nin kendisinde girdi (\textbf{input}) ve çıktı (\textbf{output}) tanımlı değil. \textbf{printf} sadece standart girdi (\textbf{input}) çıktı (\textbf{output}) kütüphanesinde (\textbf{library}) bulunan yararlı bir fonksiyon (\textbf{function}). \textbf{printf}'in davranışı ANSI standartında belirlenmiştir, böylelikle özellikleri her derleyiciyle (\textbf{compiler}) ve kütüphaneyle (\textbf{library}) standarta uyar.
-\par C'nin kendisine odaklanmak için, girdi (\textbf{input}) ve çıktı (\textbf{output}) hakkında Bölüm 7'den önce çok konuşmayacağız. Özellikle, o zamana dek formatlanmış girdiye (\textbf{input}) değinmeyeceğiz. Eğer numaraları girdilemeniz (\textbf{input}) gerekiyorsa, \textbf{scanf} fonksiyonu (\textbf{function}) üzerine olan Bölüm 7.4'ü okuyunuz. \textbf{scanf} \textbf{printf} gibi, sadece çıktı yazmak yerine girdi okuyor. \pagebreak
+\par C'nin kendisine odaklanmak için, girdi (\textbf{input}) ve çıktı (\textbf{output}) hakkında Bölüm 7'den önce çok konuşmayacağız. Özellikle, o zamana dek formatlanmış girdiye (\textbf{input}) değinmeyeceğiz. Eğer numaraları girdilemeniz (\textbf{input}) gerekiyorsa, \textbf{scanf} fonksiyonu (\textbf{function}) üzerine olan Bölüm 7.4'ü okuyunuz. \textbf{scanf}, \textbf{printf} gibi, sadece çıktı yazmak yerine girdi okuyor. \pagebreak
 \par Isı birimi dönüştürme programında birtakım problemler var. Bu problemlerden daha basit olanı çıktının (\textbf{output}) pek güzel olmaması, çünkü sayılar tam yerinde değil. Bunu düzeltmesi kolay; her \% karakterini \textbf{printf} ifadesinde (\textbf{statement}) bir genişlik ile yazarsak, sayılar alanlarında olması gereken yerlerinde olacaktır.
 Örneğin
 \begin{lstlisting}
@@ -305,7 +308,7 @@ ilk sayıyı 3 basamak genişliğinde, ikinci sayıyı da 6 basamak genişliğin
         while (fahr <= upper)
 \end{lstlisting} İkisi de çalışıyor, \textbf{int} operasyondan önce \textbf{float}'a dönüştürülüyor ve ardından hesaplama yapılıyor.
 
-\par \textbf{printf} dönüşümü belirteçi \textbf{\%3.0f} ondalıklı sayının (\textbf{floating-point number}) (\textbf{burada fahr}) en az 3 karakter genişliğinde, ondalık noktası ve kesir basamağı olmadan bastırılmasını belirtiyor. \textbf{\%6.1f} diğer bir sayı olan \textbf{celcius}'un  en az 6 karakter genişliğinde ve ondalık noktasından sonra sadece bir kesir basamağı olacak şekilde bastırılmasını belirtiyor.
+\par \textbf{printf} dönüşümü belirteçi \textbf{\%3.0f} ondalıklı sayının (\textbf{floating-point number}) (burada fahr) en az 3 karakter genişliğinde, ondalık noktası ve kesir basamağı olmadan bastırılmasını belirtiyor. \textbf{\%6.1f} diğer bir sayı olan \textbf{celcius}'un  en az 6 karakter genişliğinde ve ondalık noktasından sonra sadece bir kesir basamağı olacak şekilde bastırılmasını belirtiyor.
 Çıktı (\textbf{output}) şöyle gözüküyor:
 \begin{lstlisting}
           0      -17.8
@@ -388,7 +391,7 @@ Bu koşul değerlendirilir; eğer doğru ise, döngünün (\textbf{loop}) gövde
 \par \textbf{while} ve \textbf{for} arasındaki seçim isteğe bağlı, hangisi gereken durum için daha temiz görünüyorsa onu kullanın. \textbf{while}'dan daha kompakt olduğundan ve döngü (\textbf{loop}) kontrol ifadelerini (\textbf{statements}) beraber tek bir yerde tuttuğundan, \textbf{for} genellikle tanımlama ve arttırmanın tek bir ifade olduğu ve mantıksal olarak ilişkili olduğu döngüler (\textbf{loop}) için daha uygundur. \newline
 \\ \textbf{Egzersiz 1-5.} Isı dönüşüm programını tabloyu tersine bastıracak şekilde düzenleyin, 300 dereceden 0'a doğru. \pagebreak
 
-\section{Sembolik Sabitler (Constants)}
+\section{Sembolik Sabitler (constants)}
 
 \par Isı dönüşümünü sonsuza dek bir kenara bırakmadan önce son bir gözlem yapalım. Programa 300 ve 20 gibi "sihirli sayılar" gömmek kötü; bu sayılar bu programı daha sonra okuyacak bir kişinin kolayca görmek ve değiştirmek istediği değerler (\textbf{values}) taşıyorlar, bu sayıları bu şekilde gömmek onları sistematik yolla değiştirmeyi zorlaştırdığı gibi hangi sayının neye ait olduğunu da bilmemizi zorlaştırıyor. Bu sihirli sayılarla ilgilenmenin bir yolu onlara anlamlı isimler vermek. \textbf{\#define} satırı belirli bir karakter öbeğini bir sembolik isim veya sembolik sabit (\textbf{constant}) olarak tanımlar:
 \begin{lstlisting}
