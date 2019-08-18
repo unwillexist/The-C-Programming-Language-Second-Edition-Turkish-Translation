@@ -428,7 +428,30 @@ bir sonraki girdi(\textbf{input}) karakterini içerir. Karakterler genelde klavy
 \end{lstlisting}
 tam sayı olan değişken(\textbf{variable}) c'yi karakter olarak bastırıyor, genellikle ekrana. \textbf{putchar} ve \textbf{printf} çağrıları belki iç içe geçmiş olabilir; çıktı(\textbf{output}) yapılan çağrıya göre ortaya çıkacaktır. \pagebreak
 
-\section{Dosya Kopyalama}
+\subsection{Dosya Kopyalama}
 
+Bilinen \textbf{getchar} ve (\textbf{putchar}) ile, girdi(\textbf{input}) ve çıktı(\textbf{output}) dışında başka bir şey bilmeden şaşırtı derece fazla yararlı kod yazabiliriz. En basit örnek girdiyi(\textbf{input}) çıktıya(\textbf{output}) bir kerede bir karakter olarak kopyalayan program:
+\begin{lstlisting}
+		karakteri oku
+		while (karakter dosya-sonu göstergesi değil)
+			okuduğunda karakteri çıktıla(output)
+			karakteri oku
+\end{lstlisting}
+Bunu C'ye dönüştürürsek:
+\begin{lstlisting}
+		#include <stdio.h>
 
+		/* girdiyi(input) çıktıya(output) kopyala; 1. versiyon */
+		main()
+		{
+			int c;
+
+			c = getchar();
+			while (c != EOF) {
+				putchar(c);
+				c = getchar();
+			}
+		}
+\end{lstlisting}
+Mantıksal bir operatör olan \textbf{ !=} "eşit değil" anlamına gelir.
 \end{document}
