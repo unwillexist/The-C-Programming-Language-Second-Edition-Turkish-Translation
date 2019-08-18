@@ -232,17 +232,17 @@ Her koşulda, her zaman ifadeleri (\textbf{statements}) bir tab (4 boşluk) ile 
 \begin{lstlisting}
         celsius = 5 * (fahr-32) / 9;
 \end{lstlisting}
-Sadece 5/9 ile çarpmak yerine 5 ile çarpıp ardından 9'a bölünmesinin sebebi C'de ve diğer bir çok dilde, tam sayıların(\textbf{integer}) bölümlerinin kesirli(ondalıklı) kısımlarının budanması. 5 ve 9 tamsayı(\textbf{integer}) olduğundan, 5/9'un sonucunun kesirli kısmı budanardı ve geriye sadece 0 kalırdı ve tüm Selsiyus ısıları 0 olarak raporlanırdı.
+Sadece 5/9 ile çarpmak yerine 5 ile çarpılıp ardından 9'a bölünmesinin sebebi C'de ve diğer bir çok dilde, tam sayıların (\textbf{integer}) bölümlerinin kesirli (ondalıklı) kısımlarının budanması. 5 ve 9 tamsayı (\textbf{integer}) olduğundan, 5/9'un sonucunun kesirli kısmı budanırdı, geriye sadece 0 kalırdı ve tüm Selsiyus ısıları 0 olarak raporlanırdı.
 
-\par Bu örnek \textbf{printf}'in nasıl çalıştığını biraz daha gösteriyor. \textbf{printf} Bölüm 7'de detaylı açıklayacağımız genel-amaçlı çıktı(\textbf{output}) formatlama fonksiyonudur(\textbf{function}). İlk argümanı(\textbf{argument}) bastırılacak karakter jbeğidir(\textbf{string}), her \% karakteri fonksiyona(\textbf{function}) girilen bir diğer argüman(\textbf{argument}) tarafından yeri doldurulur (ikinci, üçüncü, ...) argümanlar(\textbf{arguments}) \% karakterlerinin yerine geçerler. Örneğin, \textbf{\%d} bir tamsayı(\textbf{integer}) argümanı(\textbf{argument}) belirtir. Böylelikle ifade
+\par Bu örnek \textbf{printf}'in nasıl çalıştığını biraz daha gösteriyor. \textbf{printf} Bölüm 7'de detaylı açıklayacağımız genel amaçlı çıktı (\textbf{output}) formatlama fonksiyonudur (\textbf{function}). İlk argümanı, (\textbf{argument}) bastırılacak karakter öbeğidir (\textbf{string}), her \% karakterinin yeri, fonksiyona (\textbf{function}) girilen bir diğer argüman (\textbf{argument}) tarafından yeri doldurulur; (ikinci, üçüncü, ...) argümanlar (\textbf{arguments}) \% karakterlerinin yerine geçerler. Örneğin, \textbf{\%d} bir tamsayı (\textbf{integer}) argümanı (\textbf{argument}) belirtir. Böylelikle ifade
 \begin{lstlisting}
         printf("%d\t%d\n", fahr, celsius);
 \end{lstlisting}
-iki tam sayının(\textbf{integer}) değerlerin(\textbf{values}) yani \textbf{fahr} ve \textbf{celcius}'un aralarında tab(\textbackslash t) karakteri ile bastırılmasını sağlar.
-\par Her \% karakteri \textbf{printf}'in ilk argümanından(\textbf{argument}) sonraki uyan ilk argümanıyla(\textbf{argument}) eşleşir. Argümanlar(\textbf{arguments}) ve \% karakterleri birbiriyle tür(\textbf{type}) olarak ve sıralama olarak eşleşmeli, yoksa yanlış çıktı alırsınız.
-\par Bu arada \textbf{printf} C dilinin bir parçası değil: C'nin kendisinde girdi(\textbf{input}) ve çıktı(\textbf{output}) tanımlı değil. \textbf{printf} sadece standart girdi(\textbf{input}) çıktı(\textbf{output}) kütüphanesinde(\textbf{library}) bulunan yararlı bir fonksiyon(\textbf{function}). \textbf{printf}'in davranışı ANSI standartında belirlenmiştir, böylelikle özellikleri her derleyiciyle(\textbf{compiler}) ve kütüphaneyle(\textbf{library}) standarda uyar.
-\par C'nin kendisine odaklanmak için, girdi(\textbf{input}) ve çıktı(\textbf{output}) hakkında Bölüm 7'den önce çok konuşmayacağız. Özellikle, o zamana dek formatlanmış girdiye(\textbf{input}) değinmeyeceğiz. Eğer numaraları girdilemeniz(\textbf{input}) gerekiyorsa, \textbf{scanf} fonksiyonu(\textbf{function}) üzerine olan Bölüm 7.4'ü okuyunuz. \textbf{scanf} \textbf{printf} gibi, sadece çıktı yazmak yerine girdi okuyor. \pagebreak
-\par Isı birimi dönüştürme programında birtakım problemler var. Bu problemlerden daha basit olanı çıktının(\textbf{output}) pek güzel olmaması çünkü sayılar tam yerinde değil. Bu düzeltmesi kolay; her \% karakterini \textbf{printf} ifadesinde(\textbf{statement}) bir genişlik ile yazarsak, sayılar alanlarında olması gereken yerlerinde olacaktır.
+iki tam sayının (\textbf{integer}) değerlerin (\textbf{values}) yani \textbf{fahr} ve \textbf{celcius}'un aralarında tab(\textbackslash t) karakteri ile bastırılmasını sağlar.
+\par Her \% karakteri \textbf{printf}'in ilk argümanından (\textbf{argument}) sonraki uyan ilk argümanıyla (\textbf{argument}) eşleşir. Argümanlar (\textbf{arguments}) ve \% karakterleri birbiriyle tür (\textbf{type}) olarak ve sıralama olarak eşleşmeli, yoksa yanlış çıktı alırsınız.
+\par Bu arada \textbf{printf} C dilinin bir parçası değil: C'nin kendisinde girdi (\textbf{input}) ve çıktı (\textbf{output}) tanımlı değil. \textbf{printf} sadece standart girdi (\textbf{input}) çıktı (\textbf{output}) kütüphanesinde (\textbf{library}) bulunan yararlı bir fonksiyon (\textbf{function}). \textbf{printf}'in davranışı ANSI standartında belirlenmiştir, böylelikle özellikleri her derleyiciyle (\textbf{compiler}) ve kütüphaneyle (\textbf{library}) standarta uyar.
+\par C'nin kendisine odaklanmak için, girdi (\textbf{input}) ve çıktı (\textbf{output}) hakkında Bölüm 7'den önce çok konuşmayacağız. Özellikle, o zamana dek formatlanmış girdiye (\textbf{input}) değinmeyeceğiz. Eğer numaraları girdilemeniz (\textbf{input}) gerekiyorsa, \textbf{scanf} fonksiyonu (\textbf{function}) üzerine olan Bölüm 7.4'ü okuyunuz. \textbf{scanf} \textbf{printf} gibi, sadece çıktı yazmak yerine girdi okuyor. \pagebreak
+\par Isı birimi dönüştürme programında birtakım problemler var. Bu problemlerden daha basit olanı çıktının (\textbf{output}) pek güzel olmaması, çünkü sayılar tam yerinde değil. Bunu düzeltmesi kolay; her \% karakterini \textbf{printf} ifadesinde (\textbf{statement}) bir genişlik ile yazarsak, sayılar alanlarında olması gereken yerlerinde olacaktır.
 Örneğin
 \begin{lstlisting}
         printf("%3d %6d\n", fahr, celsius);
@@ -266,7 +266,7 @@ ilk sayıyı 3 basamak genişliğinde, ikinci sayıyı da 6 basamak genişliğin
         280        137
         300        148
 \end{lstlisting}
-\par Daha ciddi olan problem ise tam sayı(\textbf{integer}) aritmetiği kullandığımızdan dolayı Selsiyus ısıları tam olarak doğru değil; örneğin, 0\degree F aslında -17.8\degree C, -17 değil. Daha doğru çıktıları(\textbf{output}) almamız için tamsayı(\textbf{integer}) yerine ondalıklı(\textbf{float}) aritmetik kullanmalıyız. Bu programda bazı değişiklikleri gerektiriyor. İşte programın ikinci versiyonu: \pagebreak
+\par Daha ciddi olan problem ise tam sayı (\textbf{integer}) aritmetiği kullandığımızdan dolayı Selsiyus ısıları tam olarak doğru değil; örneğin, 0\degree F aslında -17.8\degree C, -17 değil. Daha doğru çıktıları (\textbf{output}) almamız için tamsayı (\textbf{integer}) yerine ondalıklı (\textbf{float}) aritmetik kullanmalıyız. Bu, programda bazı değişiklikleri gerektiriyor. İşte programın ikinci versiyonu: \pagebreak
 
 \begin{lstlisting}
         #include <stdio.h>
@@ -293,8 +293,8 @@ ilk sayıyı 3 basamak genişliğinde, ikinci sayıyı da 6 basamak genişliğin
             }
         }
 \end{lstlisting}
-\par Bu öncekine çok benziyor, tek farkı \textbf{fahr}'ın ve \textbf{celsius}'un ondalıklı sayı(\textbf{float}) olarak tanımlanmış olması, ve dönüşüm için kullanılan formülün daha doğal şekliyle yazılmış olmalı. 5/9'u önceki versiyonda kullanamıyorduk çünkü iki tam sayının(\textbf{integer}) bölümü ondalıklı kısmını budayarak sonucun 0 çıkmasını sağlıyordu. Bir sabitteki(\textbf{constant}) ondalık noktası o sabitin türünün(\textbf{type}) ondalıklı sayı(\textbf{float}) olduğunu belirtir, yani 5.0/9.0 budanmadı çünkü işlem iki ondalıklı sayı(\textbf{float}) ile yapıldı.
-\par Eğer aritmetik operatörün tam sayı(\textbf{integer}) işlenenleri(\textbf{operand}) olursa tam sayılarla(\textbf{integers}) gerçekleşen bir işlem yapılırdı. Eğer aritmetik operatörün bir ondalıklı sayı(\textbf{float}) bir tam sayı(\textbf{integer}) işleneni(\textbf{operand}) bir şey farketmez ve tam sayı(\textbf{integer}) işlemden önce ondalıklı sayıya(\textbf{float}) dönüştürülür ve ardından hesaplama yapılırdı. Eğer \textbf{fahr-32} yazmış olsaydık, \textbf{32} otomatikman ondalıklı sayıya(\textbf{float}) dönüştürülürdü. Yine de ondalıklı sayı(\textbf{float}) olan sabitleri tam(\textbf{integral}) olmalarına rağmen ondalık noktasını kullanarak yazmamız, onların ondalıklı sayı(\textbf{float}) doğasını insan okuyucular için vurgular. Tam sayıların(\textbf{integer}) ondalıklı sayılara(\textbf{float}) dönüşümlerinin detaylarını Bölüm 2'de göreceğiz.
+\par Bu öncekine çok benziyor, tek farkı \textbf{fahr}'ın ve \textbf{celsius}'un ondalıklı sayı (\textbf{float}) olarak tanımlanmış olması ve dönüşüm için kullanılan formülün daha doğal şekliyle yazılmış olması. 5/9'u önceki versiyonda kullanamıyorduk çünkü iki tam sayının (\textbf{integer}) bölümü ondalıklı kısmını budayarak sonucun 0 çıkmasını sağlıyordu. Bir sabitteki (\textbf{constant}) ondalık noktası o sabitin türünün (\textbf{type}) ondalıklı sayı (\textbf{float}) olduğunu belirtir, yani 5.0/9.0 budanmadı çünkü işlem iki ondalıklı sayı (\textbf{float}) ile yapıldı.
+\par Eğer aritmetik operatörün tam sayı (\textbf{integer}) işlenenleri (\textbf{operands}) olursa tam sayılarla (\textbf{integers}) gerçekleşen bir işlem yapılırdı. Eğer aritmetik operatörün bir ondalıklı sayı (\textbf{float}) ve bir tam sayı (\textbf{integer}) işleneni (\textbf{operand}) var ise bir şey farketmez ve tam sayı (\textbf{integer}) işlemden önce ondalıklı sayıya (\textbf{float}) dönüştürülür ve ardından hesaplama yapılırdı. Eğer \textbf{fahr-32} yazmış olsaydık, \textbf{32} otomatikman ondalıklı sayıya (\textbf{float}) dönüştürülürdü. Yine de ondalıklı sayı (\textbf{float}) olan sabitleri tam (\textbf{integral}) olmalarına rağmen ondalık noktasını kullanarak yazmamız, onların ondalıklı sayı (\textbf{float}) doğasını insan okuyucular için vurgular. Tam sayıların (\textbf{integer}) ondalıklı sayılara (\textbf{float}) dönüşümlerinin detaylarını Bölüm 2'de göreceğiz.
 
 
 \pagebreak Şuanlık şu atamayı farkedin
@@ -303,10 +303,10 @@ ilk sayıyı 3 basamak genişliğinde, ikinci sayıyı da 6 basamak genişliğin
 \end{lstlisting} ve test edin.
 \begin{lstlisting}
         while (fahr <= upper)
-\end{lstlisting} ikisi de çalışıyor, \textbf{int} operasyondan önce \textbf{float}'a dönüştürülüyor ve ardından hesaplama yapılıyor.
+\end{lstlisting} İkisi de çalışıyor, \textbf{int} operasyondan önce \textbf{float}'a dönüştürülüyor ve ardından hesaplama yapılıyor.
 
-\par \textbf{printf} dönüşümü belirteçi \textbf{\%3.0f} ondalıklı sayının(\textbf{floating-point number}) (\textbf{burada fahr}) en az 3 karakter genişliğinde, ve ondalık noktası ve kesir basamağı olmadan bastırılmasını belirtiyor. \textbf{\%6.1f} diğer bir sayı olan \textbf{celcius}'un  en az 6 karakter genişliğinde, ve ondalık noktasından sonra sadece bir kesir basamağı olacak şekilde bastırılmasını belirtiyor.
-Çıktı(\textbf{output}) şöyle gözüküyor:
+\par \textbf{printf} dönüşümü belirteçi \textbf{\%3.0f} ondalıklı sayının (\textbf{floating-point number}) (\textbf{burada fahr}) en az 3 karakter genişliğinde, ondalık noktası ve kesir basamağı olmadan bastırılmasını belirtiyor. \textbf{\%6.1f} diğer bir sayı olan \textbf{celcius}'un  en az 6 karakter genişliğinde ve ondalık noktasından sonra sadece bir kesir basamağı olacak şekilde bastırılmasını belirtiyor.
+Çıktı (\textbf{output}) şöyle gözüküyor:
 \begin{lstlisting}
           0      -17.8
          20       -6.7
@@ -326,7 +326,7 @@ ilk sayıyı 3 basamak genişliğinde, ikinci sayıyı da 6 basamak genişliğin
         300      148.9
 \end{lstlisting}
 
-Genişlik ve nicelik bir belirteçle görmezden gelinebilir: \textbf{\%6f} sayının en az 6 karakter genişliğinde olmasını belirtiyor; \textbf{\%.2f} ondalık noktasından sonraki iki karakteri temsil ediyor, fakat genişlik zoraki değil; ve \textbf{\%f} sayıyı ondalıklı sayı(\textbf{float}) olarak bastırmasını belirtiyor. \pagebreak
+Genişlik ve nicelik bir belirteçle görmezden gelinebilir: \textbf{\%6f} sayının en az 6 karakter genişliğinde olmasını belirtiyor; \textbf{\%.2f} ondalık noktasından sonraki iki karakteri temsil ediyor fakat genişlik zoraki değil ve \textbf{\%f} sayıyı ondalıklı sayı (\textbf{float}) olarak bastırmasını belirtiyor. \pagebreak
 
 \begin{lstlisting}
         %d          tamsayı(integer) olarak bastır
@@ -343,16 +343,16 @@ Genişlik ve nicelik bir belirteçle görmezden gelinebilir: \textbf{\%6f} sayı
 
         %6.2f       ondalıklı sayı(float) olarak bastır, en az 6 karakter
                     genişliğinde ve ondalık noktasından sonra iki karakter
-\end{lstlisting} Diğerlerininin yanında, \textbf{printf} ayrıca \textbf{\%o} belirtecini sekizliler(\textbf{octal}), onaltılıklar(\textbf{hexademical}) için \textbf{\%x}, \textbf{\%c}'yi karakterler için, \textbf{\%s}'yi karakter öbekleri(\textbf{string}) için, ve \textbf{\%\%}'yi \%'ün kendisi için kullanıyor. \\
+\end{lstlisting} Diğerlerininin yanında, \textbf{printf} ayrıca \textbf{\%o} belirtecini sekizlikler(\textbf{octal}), \textbf{\%x} onaltılıklar(\textbf{hexademical}) için, \textbf{\%c}'yi karakterler için, \textbf{\%s}'yi karakter öbekleri(\textbf{string}) için, ve \textbf{\%\%}'yi \%'ün kendisi için kullanıyor. \\
 
 \textbf{Egersiz 1-3.} Isı birimi dönüşüm programını tablonun başındaki yorum satırlarındaki başlığı bastıracak şekilde düzenleyin. \\
 
 
 \textbf{Egzersiz 1-4.} Tablodakileri bastıracak benzer bir programı yardım almadan kendiniz yazın.
 
-\section{For Döngüsü(\textbf{loop})}
+\section{For Döngüsü (\textbf{loop})}
 
-\par Bir programı belirli bir görevi gerçekleştirmesi için çok farklı şekillerde yazabiliriz. Haydi ısı dönüşüm programının bir varyasonunu oluşturalım.
+\par Bir programı belirli bir görevi gerçekleştirmesi için çok farklı şekillerde yazabiliriz. Haydi ısı dönüşüm programının bir varyasyonunu oluşturalım.
 
 \begin{lstlisting}
         #include <stdio.h>
@@ -367,34 +367,34 @@ Genişlik ve nicelik bir belirteçle görmezden gelinebilir: \textbf{\%6f} sayı
         }
 \end{lstlisting}
 
-Bu da aynı çıktıyı(\textbf{output}) üretecektir, fakat kesinlikle farklı gözüküyor.
+Bu da aynı çıktıyı (\textbf{output}) üretecektir, fakat kesinlikle farklı gözüküyor.
 
-\pagebreak En büyük değişiklik birçok değişkenin(\textbf{variables}) saf dışı bırakılması; sadece \textbf{fahr} kaldı ve onu bir \textbf{int} yaptık. \textbf{lower} ve \textbf{upper} limitleri ve adım büyüklüğü sadece \textbf{for} ifadesi(\textbf{statement}) içinde sabit(\textbf{constant}) olarak karşımızda, artık yeni bir inşâ, ve Selsiyus sıcaklığını hesaplayan açıklama ayrı bir ifade(\textbf{statement}) yerine artık \textbf{printf}'nin üçüncü argümanı(\textbf{argument}) olarak karşımızda.
+\pagebreak En büyük değişiklik birçok değişkenin (\textbf{variables}) saf dışı bırakılması; sadece \textbf{fahr} kaldı ve onu bir \textbf{int} yaptık. \textbf{lower} ve \textbf{upper} limitleri ve adım büyüklüğü sadece \textbf{for} ifadesi (\textbf{statement}) içinde sabit (\textbf{constant}) olarak karşımızda, artık yeni bir inşâ ve Selsiyus sıcaklığını hesaplayan açıklama ayrı bir ifade (\textbf{statement}) yerine artık \textbf{printf}'nin üçüncü argümanı (\textbf{argument}) olarak karşımızda.
 
-\par Bu son değişiklik bize bir türün(\textbf{type}) değişkeni(\textbf{variable}) yerine doğrudan değer(\textbf{değer}) kullanmamıza izin verilmesi durumuna bir örnek, bu durumlarda o türün(\textbf{type}) daha komplike açıklamaları kullanılabilir. \textbf{printf}'in üçüncü argümanı \textbf{\%6.1f} ile eşleşecek olan bir ondalıklı sayı(\textbf{float}) olması gerektiğinden herhangi bir ondalıklı sayı(\textbf{float}) oraya konulabilir.
-\par \textbf{for} ifadesi(\textbf{statement}) bir döngü(\textbf{loop}), \textbf{while}'ın bir genellemesi. Eğer erken(\textbf{earlier}) \textbf{while} ile karşılaştırırsak, işleyişi açıkça görebiliriz. Parantezler içerisinde noktalı virgüller ile ayrılan üç ayrı bölüm mevcut. İlk bölüm, tanımlama
+\par Bu son değişiklik bize bir türün (\textbf{type}) değişkeni (\textbf{variable}) yerine doğrudan değer (\textbf{değer}) kullanmamıza izin verilmesi durumuna bir örnek, bu durumlarda o türün (\textbf{type}) daha komplike açıklamaları kullanılabilir. \textbf{printf}'in üçüncü argümanı \textbf{\%6.1f} ile eşleşecek olan bir ondalıklı sayı (\textbf{float}) olması gerektiğinden herhangi bir ondalıklı sayı (\textbf{float}) oraya konulabilir.
+\par \textbf{for} ifadesi (\textbf{statement}) bir döngü (\textbf{loop}), \textbf{while}'ın bir genellemesi. Eğer erken (\textbf{earlier}) \textbf{while} ile karşılaştırırsak, işleyişi açıkça görebiliriz. Parantezler içerisinde noktalı virgüller ile ayrılan üç ayrı bölüm mevcut. İlk bölüm, tanımlama:
 \begin{lstlisting}
 		fahr = 0
 \end{lstlisting}
-döngü(\textbf{loop}) başlamadan önce sadece bir kere yapılır. İkinci bölüm ise test veya döngüyü(\textbf{loop}) kontrol edecek olan koşul bölümüdür:
+Döngü (\textbf{loop}) başlamadan önce sadece bir kere yapılır. İkinci bölüm ise test veya döngüyü (\textbf{loop}) kontrol edecek olan koşul bölümüdür:
 \begin{lstlisting}
 		fahr <= 300
 \end{lstlisting}
-Bu koşul değerlendirilir; eğer doğru ise, döngünün(\textbf{loop}) gövde(\textbf{body}) kısmı(burada sadece \textbf{printf}) çalıştırılır. Ardından arttırma bölümü
+Bu koşul değerlendirilir; eğer doğru ise, döngünün (\textbf{loop}) gövde (\textbf{body}) kısmı (burada sadece \textbf{printf}) çalıştırılır. Ardından arttırma bölümü
 \begin{lstlisting}
 		fahr = fahr + 20
 \end{lstlisting}
-çalıştırılır, ve koşul tekrardan test edilir. Döngü(\textbf{loop}) eğer koşul yanlış(\textbf{false}) olursa sonlanır. \textbf{while}'da olduğu gibi gövde(\textbf{body}) kısmı tek bir ifadeden(\textbf{statement}) veya süslü parantezler arasındaki ifade(\textbf{statements}) gruplarından oluşabilir. Tanımlama, koşul ve arttırma bölümleri herhangi bir açıklamadan(\textbf{expression}) oluşabilir.
-\par \textbf{while} ve \textbf{for} arasındaki seçim isteğe bağlı, hangisi gereken durum için daha temiz görünüyorsa onu kullanın. \textbf{while}'dan daha kompakt olduğundan ve döngü(\textbf{loop}) kontrol ifadelerini(\textbf{statements}) beraber tek bir yerde tuttuğundan, \textbf{for} genellikle tanımlama ve arttırmanın tek bir ifade olduğu ve mantıksal olarak ilişkili olduğu döngüler(\textbf{loop}) için daha uygundur. \newline
+çalıştırılır ve koşul tekrardan test edilir. Döngü (\textbf{loop}) eğer koşul yanlış (\textbf{false}) olursa sonlanır. \textbf{while}'da olduğu gibi gövde (\textbf{body}) kısmı tek bir ifadeden (\textbf{statement}) veya süslü parantezler arasındaki ifade (\textbf{statements}) gruplarından oluşabilir. Tanımlama, koşul ve arttırma bölümleri herhangi bir açıklamadan (\textbf{expression}) oluşabilir.
+\par \textbf{while} ve \textbf{for} arasındaki seçim isteğe bağlı, hangisi gereken durum için daha temiz görünüyorsa onu kullanın. \textbf{while}'dan daha kompakt olduğundan ve döngü (\textbf{loop}) kontrol ifadelerini (\textbf{statements}) beraber tek bir yerde tuttuğundan, \textbf{for} genellikle tanımlama ve arttırmanın tek bir ifade olduğu ve mantıksal olarak ilişkili olduğu döngüler (\textbf{loop}) için daha uygundur. \newline
 \\ \textbf{Egzersiz 1-5.} Isı dönüşüm programını tabloyu tersine bastıracak şekilde düzenleyin, 300 dereceden 0'a doğru. \pagebreak
 
-\section{Sembolik Sabitler(constants)}
+\section{Sembolik Sabitler (Constants)}
 
-\par Isı dönüşümünü sonsuza dek bir kenara bırakmadan önce son bir gözlem yapalım. Programa 300 ve 20 gibi "sihirli sayılar" gömmek kötü; bu sayılar bu programı daha sonra okuyacak bir kişinin kolayca görmek ve değiştirmek istediği değerler(\textbf{values}) taşıyorlar, bu sayıları bu şekilde gömmek onları sistematik yolla değiştirmeyi zorlaştırdığı gibi hangi sayının neye ait olduğunu da bilmemizi zorlaştırıyor. Bu sihirli sayılarla ilgilenmenin bir yolu onlara anlamlı isimler vermek. \textbf{\#define} satırı belirli bir karakter öbeğini bir sembolik isim veya sembolik sabit(\textbf{constant}) olarak tanımlar:
+\par Isı dönüşümünü sonsuza dek bir kenara bırakmadan önce son bir gözlem yapalım. Programa 300 ve 20 gibi "sihirli sayılar" gömmek kötü; bu sayılar bu programı daha sonra okuyacak bir kişinin kolayca görmek ve değiştirmek istediği değerler (\textbf{values}) taşıyorlar, bu sayıları bu şekilde gömmek onları sistematik yolla değiştirmeyi zorlaştırdığı gibi hangi sayının neye ait olduğunu da bilmemizi zorlaştırıyor. Bu sihirli sayılarla ilgilenmenin bir yolu onlara anlamlı isimler vermek. \textbf{\#define} satırı belirli bir karakter öbeğini bir sembolik isim veya sembolik sabit (\textbf{constant}) olarak tanımlar:
 \begin{lstlisting}
 		#define isim(name) karakter öbeği
 \end{lstlisting}
-Daha sonra, programda herhangi bir yerde bu isim(\textbf{name}) geçtiğinde, isim(\textbf{name}) ile eşleşen karakter öbeği(\textbf{string}) isimin yazıldığı yere geçer. isimin(\textbf{name}) formu değişkenlerin(\textbf{variables}) adlarının formuyla aynıdır: bir harf ile başlayan, sayı ve harflerden oluşan dizi. Eşleşen karakter öbeği her türlü karakterden oluşabilir; sadece sayılarla sınırlı değildir.
+Daha sonra programda herhangi bir yerde bu isim (\textbf{name}) geçtiğinde, isim (\textbf{name}) ile eşleşen karakter öbeği (\textbf{string}) ismin yazıldığı yere geçer. İsmin (\textbf{name}) formu değişkenlerin (\textbf{variables}) adlarının formuyla aynıdır: bir harf ile başlayan, sayı ve harflerden oluşan dizi. Eşleşen karakter öbeği her türlü karakterden oluşabilir, sadece sayılarla sınırlı değildir.
 \begin{lstlisting}
 		#include <stdio.h>
 
@@ -411,26 +411,26 @@ Daha sonra, programda herhangi bir yerde bu isim(\textbf{name}) geçtiğinde, is
 		}
 \end{lstlisting}
 
-\textbf{LOWER}, \textbf{UPPER} ve \textbf{STEP} nicelikleri birer sembolik sabittir(\textbf{constant}), değişken(\textbf{variables}) değil, bu yüzden tanımlamalarla ortaya çıkmıyorlar. Sembolik sabitler(\textbf{constant}) genellikle büyük harflerle yazılır böylece kolayca küçük harfli değişken(\textbf{variable}) adlarından ayırt edilebilirler. \textbf{\#define} satırının sonunda noktalı virgül olmadığını farkedin. \pagebreak
+\textbf{LOWER}, \textbf{UPPER} ve \textbf{STEP} nicelikleri birer sembolik sabittir (\textbf{constant}), değişken (\textbf{variables}) değil; bu yüzden tanımlamalarla ortaya çıkmıyorlar. Sembolik sabitler (\textbf{constant}) genellikle büyük harflerle yazılır böylece kolayca küçük harfli değişken (\textbf{variable}) adlarından ayırt edilebilirler. \textbf{\#define} satırının sonunda noktalı virgül olmadığını farkedin. \pagebreak
 
-\section{Karakter Girdisi(input) ve Çıktısı(output)}
+\section{Karakter Girdisi (input) ve Çıktısı (output)}
 
-Artık karakter verisi işleyecek birbiriyle ilişkili bir program ailesini konuşacağız. Bir çok programın, sadece buradaki prototiplerin genişletilmiş versiyonları olduğunu farkedeceksiniz.
-\par Standart girdi(\textbf{input}) çıktı(\textbf{output}) kütüphanesinin(\textbf{library}) desteklediği girdi(\textbf{input}) çıktı(\textbf{output}) modeli oldukça basit. Metin girdisi(\textbf{input}) ve çıktısı(\textbf{output}), nereden kaynaklandığı ve nereye gittiği farketmeksizin, karakter akıntıları(\textbf{stream of charachters}) ile yapılır. \textit{Metin akıntısı}(\textbf{text stream}) satırlara bölünmüş bir karakter dizisidir; her satır sıfır veya daha fazla karakterden ve onları takiben gelen bir yeni satır karakterinden oluşur. Her girdi(\textbf{input}) ve çıktı(\textbf{output}) akışını bu modele uydarmak kütüphanenin(\textbf{library}) sorumluluğunda; C programcısı kütüphaneyi kullanma amacı satırların program dışında nasıl temsil edildiği hakkında endişelenmemek için kullanıyor.
-\par Standart kütüphane(\textbf{library}) bize bir kerede bir adet karakter yazdırmak için birçok fonksiyon sağlıyor, \textbf{getchar} ve \textbf{putchar} en basitleri. Her çağırıldığında \textbf{getchar} bir sonraki girdi(\textbf{input}) karakterini metin akışından okuyor ve onu kendi değeri(\textbf{value}) olarak döndürüyor(\textbf{return}). Değişken(\textbf{variable}) c
+Artık karakter verisi işleyecek, birbiriyle alakalı bir program ailesini konuşacağız. Birçok programın, sadece buradaki prototiplerin genişletilmiş versiyonları olduğunu farkedeceksiniz.
+\par Standart girdi (\textbf{input}) çıktı (\textbf{output}) kütüphanesinin (\textbf{library}) desteklediği girdi (\textbf{input}) çıktı (\textbf{output}) modeli oldukça basit. Metin girdisi (\textbf{input}) ve çıktısı (\textbf{output}); nereden kaynaklandığı ve nereye gittiği farketmeksizin, karakter akıntıları (\textbf{stream of charachters}) ile yapılır. \textit{Metin akıntısı} (\textbf{text stream}) satırlara bölünmüş bir karakter dizisidir; her satır sıfır veya daha fazla karakterden ve onları takiben gelen bir yeni satır karakterinden oluşur. Her girdi (\textbf{input}) ve çıktı (\textbf{output}) akışını bu modele uydurmak kütüphanenin (\textbf{library}) sorumluluğunda; C programcısı kütüphaneyi satırların program dışında nasıl temsil edildiği hakkında endişelenmemek için kullanıyor.
+\par Standart kütüphane (\textbf{library}) bize bir kerede bir adet karakter yazdırmak için birçok fonksiyon sağlıyor, \textbf{getchar} ve \textbf{putchar} en basitleri. Her çağrıldığında \textbf{getchar} bir sonraki girdi (\textbf{input}) karakterini metin akışından okuyor ve onu kendi değeri (\textbf{value}) olarak döndürüyor (\textbf{return}). Değişken (\textbf{variable}) c
 \begin{lstlisting}
 		c = getchar()
 \end{lstlisting}
-bir sonraki girdi(\textbf{input}) karakterini içerir. Karakterler genelde klavyeden gelir; dosyalardan girdileri(\textbf{input}) Bölüm 7'de konuştuk.
-\textbf{putchar} fonksiyonu(\textbf{function}) her çağırıldığında bir karakteri bastırıyor:
+bir sonraki girdi (\textbf{input}) karakterini içerir. Karakterler genelde klavyeden gelir; dosyalardan girdileri (\textbf{input}) Bölüm 7'de konuştuk.
+\textbf{putchar} fonksiyonu (\textbf{function}) her çağrıldığında bir karakteri bastırıyor:
 \begin{lstlisting}
 		putchar(c)
 \end{lstlisting}
-tam sayı olan değişken(\textbf{variable}) c'yi karakter olarak bastırıyor, genellikle ekrana. \textbf{putchar} ve \textbf{printf} çağrıları belki iç içe geçmiş olabilir; çıktı(\textbf{output}) yapılan çağrıya göre ortaya çıkacaktır. \pagebreak
+Tam sayı olan değişken (\textbf{variable}) c'yi karakter olarak bastırıyor, genellikle ekrana. \textbf{putchar} ve \textbf{printf} çağrıları belki iç içe geçmiş olabilir, çıktı (\textbf{output}) yapılan çağrıya göre ortaya çıkacaktır. \pagebreak
 
 \subsection{Dosya Kopyalama}
 
-Bilinen \textbf{getchar} ve \textbf{putchar} ile, girdi(\textbf{input}) ve çıktı(\textbf{output}) dışında başka bir şey bilmeden şaşırtıcı derecede fazla yararlı kod yazabiliriz. En basit örnek girdiyi(\textbf{input}) çıktıya(\textbf{output}) bir kerede bir karakter olarak kopyalayan program:
+Bilinen \textbf{getchar} ve \textbf{putchar} ile, girdi (\textbf{input}) ve çıktı (\textbf{output}) dışında başka bir şey bilmeden şaşırtıcı derecede fazla yararlı kod yazabiliriz. En basit örnek girdiyi (\textbf{input}) çıktıya (\textbf{output}) bir kerede bir karakter olarak kopyalayan program:
 \begin{lstlisting}
 		karakteri oku
 		while (karakter dosya-sonu göstergesi değil)
