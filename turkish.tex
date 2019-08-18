@@ -415,7 +415,7 @@ Daha sonra, programda herhangi bir yerde bu isim(\textbf{name}) geçtiğinde, is
 
 \section{Karakter Girdisi(input) ve Çıktısı(output)}
 
-Artık karakter verisi işleyecek birbiriyle alakalı bir program ailesini konuşacağız. Bir çok programın, sadece buradaki prototiplerin genişletilmiş versiyonları olduğunu farkedeceksiniz.
+Artık karakter verisi işleyecek birbiriyle ilişkili bir program ailesini konuşacağız. Bir çok programın, sadece buradaki prototiplerin genişletilmiş versiyonları olduğunu farkedeceksiniz.
 \par Standart girdi(\textbf{input}) çıktı(\textbf{output}) kütüphanesinin(\textbf{library}) desteklediği girdi(\textbf{input}) çıktı(\textbf{output}) modeli oldukça basit. Metin girdisi(\textbf{input}) ve çıktısı(\textbf{output}), nereden kaynaklandığı ve nereye gittiği farketmeksizin, karakter akıntıları(\textbf{stream of charachters}) ile yapılır. \textit{Metin akıntısı}(\textbf{text stream}) satırlara bölünmüş bir karakter dizisidir; her satır sıfır veya daha fazla karakterden ve onları takiben gelen bir yeni satır karakterinden oluşur. Her girdi(\textbf{input}) ve çıktı(\textbf{output}) akışını bu modele uydarmak kütüphanenin(\textbf{library}) sorumluluğunda; C programcısı kütüphaneyi kullanma amacı satırların program dışında nasıl temsil edildiği hakkında endişelenmemek için kullanıyor.
 \par Standart kütüphane(\textbf{library}) bize bir kerede bir adet karakter yazdırmak için birçok fonksiyon sağlıyor, \textbf{getchar} ve \textbf{putchar} en basitleri. Her çağırıldığında \textbf{getchar} bir sonraki girdi(\textbf{input}) karakterini metin akışından okuyor ve onu kendi değeri(\textbf{value}) olarak döndürüyor(\textbf{return}). Değişken(\textbf{variable}) c
 \begin{lstlisting}
@@ -430,12 +430,12 @@ tam sayı olan değişken(\textbf{variable}) c'yi karakter olarak bastırıyor, 
 
 \subsection{Dosya Kopyalama}
 
-Bilinen \textbf{getchar} ve (\textbf{putchar}) ile, girdi(\textbf{input}) ve çıktı(\textbf{output}) dışında başka bir şey bilmeden şaşırtıcı derecede fazla yararlı kod yazabiliriz. En basit örnek girdiyi(\textbf{input}) çıktıya(\textbf{output}) bir kerede bir karakter olarak kopyalayan program:
+Bilinen \textbf{getchar} ve \textbf{putchar} ile, girdi(\textbf{input}) ve çıktı(\textbf{output}) dışında başka bir şey bilmeden şaşırtıcı derecede fazla yararlı kod yazabiliriz. En basit örnek girdiyi(\textbf{input}) çıktıya(\textbf{output}) bir kerede bir karakter olarak kopyalayan program:
 \begin{lstlisting}
 		karakteri oku
 		while (karakter dosya-sonu göstergesi değil)
-			okuduğunda karakteri çıktıla(output)
-			karakteri oku
+			okuduğun karakteri çıktıla(output)
+			karakter oku
 \end{lstlisting}
 Bunu C'ye dönüştürürsek:
 \begin{lstlisting}
@@ -454,4 +454,12 @@ Bunu C'ye dönüştürürsek:
 		}
 \end{lstlisting}
 Mantıksal bir operatör olan \textbf{ !=} "eşit değil" anlamına gelir.
+\par Tabiki ekrandaki yada klavyedeki karakter, diğer her şey gibi, bit olarak içeride saklanıyor. Tür (\textbf{type}) \textbf{char} özellikle karakter verisi taşıması için oluşturuldu fakat herhangi bir tam sayı (\textbf{integer}) değer kullanılabilir. Biz ince ve önemli bir sebeple \textbf{int} kullandık.
+\par Problem, girdinin (\textbf{input}) sonunun geçerli veriden ayırılması. Çözüm ise \textbf{getchar}'ın girdi (\textbf{input}) kalmadığında herhangi gerçek bir karakterle karıştırılamayacak belirgin bir değer dönmesi (\textbf{return}). Bu değer \textbf{EOF} olarak adlandırılıyor, "dosya sonu" (\textbf{end of file}) anlamına geliyor. Biz c'yi \textbf{getchar}'ın döndürebileceği kadar büyük bir değer taşıyan bir türde tanımlamamız gerekiyor. c, lazım olduğunda EOF'yi taşıyabileceği kadar büyük olması gerektiğinden \textbf{char} kullanamazdık. Bu nedenle \textbf{int} kullandık.
+\par EOF \textbf{<stdio.h}'da bir tam sayı (\textbf{integer}) olarak tanımlanmıştır, fakat EOF'nin sayı değeri hakkında \textbf{char} değeri ile aynı olmadığından dolayı endişelenmemiz gerekmiyor. Sembolik sabiti (\textbf{Symbolic Constant}) kullanarak, programdaki hiçbir şeyin belirli bir sayı değerine dayalı olmadığından emin olduk.
+\par Kopyalama programı tecrübeli C programcıları tarafından daha farklı yazılabilir. C'de herhangi bir atama, örneğin
+\begin{lstlisting}
+		c = getchar()
+\end{lstlisting}
+bir açıklamadır (\textbf{expression}) ve değeri vardır,
 \end{document}
